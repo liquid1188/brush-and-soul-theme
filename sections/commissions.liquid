@@ -1,0 +1,145 @@
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">made just for you</span>
+    <h1>Commission an original</h1>
+    <p>A painting created for your space, your story, your light — in Caroline's hand, with color gathered from a life of travel.</p>
+  </div>
+</section>
+
+<section style="padding-top:18px">
+  <div class="wrap">
+    <div class="sec-head"><h2>How it works</h2></div>
+    <ol class="steps" style="max-width:760px;margin:0 auto;grid-template-columns:1fr 1fr;display:grid;gap:1.6rem">
+      <li><span class="n" style="color:var(--pomegranate)">1</span><div><strong style="color:var(--ink)">Tell me your vision</strong><span style="color:var(--ink-soft)">Size, subject, palette, and where it will live.</span></div></li>
+      <li><span class="n" style="color:var(--pomegranate)">2</span><div><strong style="color:var(--ink)">Receive a quote</strong><span style="color:var(--ink-soft)">A clear price and timeline, built from your details.</span></div></li>
+      <li><span class="n" style="color:var(--pomegranate)">3</span><div><strong style="color:var(--ink)">The painting begins</strong><span style="color:var(--ink-soft)">A deposit reserves your place in the studio.</span></div></li>
+      <li><span class="n" style="color:var(--pomegranate)">4</span><div><strong style="color:var(--ink)">It arrives</strong><span style="color:var(--ink-soft)">Carefully packed and shipped to your door.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="cats">
+  <div class="wrap">
+    <div class="comm-grid" style="grid-template-columns:1fr 1fr;align-items:start">
+      <div>
+        <span class="eyebrow">the guide</span>
+        <h2 style="font-size:2rem;margin:.3rem 0 1rem">Base prices by size</h2>
+        <table class="ptable ptable-light">
+          <thead><tr><th>Size</th><th></th><th style="text-align:right">Base</th></tr></thead>
+          <tbody>
+            <tr><td class="dim">11.7 &times; 16.5 in<br><span class="aka">29.7 &times; 42 cm &middot; A3</span></td><td></td><td class="amt">$300</td></tr>
+            <tr><td class="dim">16.5 &times; 23.4 in<br><span class="aka">42 &times; 59.4 cm &middot; A2</span></td><td></td><td class="amt">$600</td></tr>
+            <tr><td class="dim">23.4 &times; 33.1 in<br><span class="aka">59.4 &times; 84.1 cm &middot; A1</span></td><td></td><td class="amt">$900</td></tr>
+            <tr><td class="dim">33.1 &times; 46.8 in<br><span class="aka">84.1 &times; 118.9 cm &middot; A0</span></td><td></td><td class="amt">$1,200</td></tr>
+          </tbody>
+        </table>
+        <p style="color:var(--ink-soft);font-size:.9rem">These are base prices. The final cost rises with the surface, the level of detail, and any embellishments — jewels, crystals, stones, gold leaf, resin, or glitter — added for an upcharge. Confirmed with your quote after a short consultation.</p>
+      </div>
+
+      <div class="estimator">
+        <h3>Estimate your piece</h3>
+        <p class="sub">A starting figure — your exact quote is set after we talk.</p>
+        <div class="field"><label>Size</label><div class="seg" id="seg-size" role="group" aria-label="Size">
+          <button type="button" data-v="A3" aria-pressed="true">A3 &middot; 11.7&times;16.5 in</button>
+          <button type="button" data-v="A2" aria-pressed="false">A2 &middot; 16.5&times;23.4 in</button>
+          <button type="button" data-v="A1" aria-pressed="false">A1 &middot; 23.4&times;33.1 in</button>
+          <button type="button" data-v="A0" aria-pressed="false">A0 &middot; 33.1&times;46.8 in</button>
+        </div></div>
+        <div class="field"><label>Medium</label><div class="seg" id="seg-medium" role="group" aria-label="Medium">
+          <button type="button" data-v="watercolor" aria-pressed="true">Watercolor</button>
+          <button type="button" data-v="alcohol-ink" aria-pressed="false">Alcohol ink</button>
+        </div></div>
+        <div class="field"><label>Surface</label><div class="seg" id="seg-surface" role="group" aria-label="Surface">
+          <button type="button" data-v="paper" aria-pressed="true">Paper</button>
+          <button type="button" data-v="canvas" aria-pressed="false">Canvas</button>
+        </div></div>
+        <div class="field"><label>Level of detail</label><div class="seg" id="seg-detail" role="group" aria-label="Level of detail">
+          <button type="button" data-v="simple" aria-pressed="true">Simple</button>
+          <button type="button" data-v="moderate" aria-pressed="false">Moderate</button>
+          <button type="button" data-v="intricate" aria-pressed="false">Intricate</button>
+        </div></div>
+        <div class="field" style="margin-bottom:.4rem"><label>Embellishments <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label><div class="seg" id="seg-embellish" role="group" aria-label="Embellishments">
+          <button type="button" data-v="jewels" aria-pressed="false">Jewels</button>
+          <button type="button" data-v="crystals" aria-pressed="false">Crystals</button>
+          <button type="button" data-v="stones" aria-pressed="false">Stones</button>
+          <button type="button" data-v="gold-leaf" aria-pressed="false">Gold leaf</button>
+          <button type="button" data-v="resin" aria-pressed="false">Resin</button>
+          <button type="button" data-v="glitter" aria-pressed="false">Glitter</button>
+        </div></div>
+        <div class="est-out">
+          <div class="row"><span class="lab">Base price</span><span class="big" id="est-base">$300</span></div>
+          <div class="row" style="margin-top:.4rem"><span class="lab">Estimated range</span><span class="range" id="est-range">$300</span></div>
+          <p class="exp" id="est-exp"></p>
+        </div>
+        <div style="margin-top:1.2rem"><a href="#request" class="btn btn-saffron">Start my commission</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="request">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">let's begin</span><h2>Request a commission</h2><p>Tell Caroline what you have in mind. She'll reply with a quote and timeline.</p></div>
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div style="text-align:center;max-width:520px;margin:0 auto"><p class="eyebrow">received with thanks</p><h3 style="font-size:1.6rem;margin:.4rem 0 .6rem">Your request is on its way.</h3><p style="color:var(--ink-soft)">Caroline will be in touch soon with a quote and timeline.</p></div>
+      {% else %}
+      <div class="form">
+        <div class="form-grid">
+          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="contact[name]" required></div>
+          <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" name="contact[email]" required></div>
+          <div class="field"><label for="c-size">Size</label><select id="c-size" name="contact[Size]">
+            <option>A3 — 11.7 × 16.5 in</option><option>A2 — 16.5 × 23.4 in</option><option>A1 — 23.4 × 33.1 in</option><option>A0 — 33.1 × 46.8 in</option><option>Custom / not sure</option>
+          </select></div>
+          <div class="field"><label for="c-medium">Medium preference</label><select id="c-medium" name="contact[Medium]">
+            <option>Watercolor</option><option>Alcohol ink</option><option>Not sure — recommend for me</option>
+          </select></div>
+          <div class="field full"><label>Embellishments <span style="font-weight:400;color:var(--ink-soft)">(optional — added for an upcharge)</span></label>
+            <div style="display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.2rem">
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Jewels" style="width:auto"> Jewels</label>
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Crystals" style="width:auto"> Crystals</label>
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Stones" style="width:auto"> Stones</label>
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Gold leaf" style="width:auto"> Gold leaf</label>
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Resin" style="width:auto"> Resin</label>
+              <label style="font-weight:400;display:flex;gap:.45rem;align-items:center"><input type="checkbox" name="contact[Embellishments][]" value="Glitter" style="width:auto"> Glitter</label>
+            </div>
+          </div>
+          <div class="field full"><label for="c-vision">Your vision</label><textarea id="c-vision" name="contact[body]" placeholder="Subject, mood, colors, the story behind it…" required></textarea></div>
+          <div class="field"><label for="c-budget">Budget range <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label><input id="c-budget" name="contact[Budget]" placeholder="e.g. $600–900"></div>
+          <div class="field"><label for="c-timeline">Timeline <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label><input id="c-timeline" name="contact[Timeline]" placeholder="e.g. by December"></div>
+        </div>
+        <div class="full" style="margin-top:.6rem"><button type="submit" class="btn btn-primary">Send request</button></div>
+      </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+<section class="cats" style="padding:64px 0">
+  <div class="wrap">
+    <div class="sec-head"><h2>Good to know</h2></div>
+    <div class="faq">
+      <details><summary>How long does a commission take?</summary><p>It depends on size and detail — most pieces take a few weeks once your spot in the studio is reserved. You'll get a timeline with your quote.</p></details>
+      <details><summary>What raises the price above the base?</summary><p>Working on canvas, intricate and highly detailed compositions, and embellishments — jewels, crystals, stones, gold leaf, resin, or glitter worked into the piece. Framing can be added too.</p></details>
+      <details><summary>What media does Caroline paint in?</summary><p>Primarily watercolor and alcohol ink, often layered with embellishments for depth and shimmer.</p></details>
+      <details><summary>Do you ship internationally?</summary><p>Yes. Caroline paints from Iran and ships worldwide; shipping is quoted with your piece based on size and destination.</p></details>
+    </div>
+  </div>
+</section>
+
+<script>
+  var BASE={A3:300,A2:600,A1:900,A0:1200},SURFACE={paper:1,canvas:1.15},DETAIL={simple:1,moderate:1.10,intricate:1.25},EE=40,DL={simple:'simple',moderate:'moderate',intricate:'intricate'};
+  var pick={size:'A3',medium:'watercolor',surface:'paper',detail:'simple'},emb=new Set();
+  function money(n){return '$'+Math.round(n).toLocaleString();}
+  function update(){
+    var base=BASE[pick.size];var high=base*SURFACE[pick.surface]*DETAIL[pick.detail]+emb.size*EE;
+    document.getElementById('est-base').textContent=money(base);
+    document.getElementById('est-range').textContent=high>base?money(base)+' \u2013 '+money(high):money(base);
+    var x=[];if(pick.surface==='canvas')x.push('canvas');if(pick.detail!=='simple')x.push(DL[pick.detail]+' detail');if(emb.size)x.push(emb.size+' embellishment'+(emb.size>1?'s':''));
+    document.getElementById('est-exp').textContent=x.length?'Illustrative \u2014 '+x.join(', ')+' raise the estimate above base. Final quote confirmed after consultation.':'Illustrative \u2014 final quote confirmed after a short consultation.';
+  }
+  function single(id,key){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');pick[key]=b.dataset.v;update();});}
+  function multi(id,set){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');if(on)set.delete(b.dataset.v);else set.add(b.dataset.v);update();});}
+  single('seg-size','size');single('seg-medium','medium');single('seg-surface','surface');single('seg-detail','detail');multi('seg-embellish',emb);update();
+</script>
+{% schema %}{ "name": "Commissions", "settings": [] }{% endschema %}

@@ -1,0 +1,6 @@
+<section class="page-hero"><div class="wrap"><h1>Collections</h1></div></section>
+<section style="padding-top:10px"><div class="wrap"><div class="coll-grid">
+  {% for collection in collections %}
+    <a class="coll c-persian" href="{{ collection.url }}">{{ collection.title }}</a>
+  {% endfor %}
+</div></div></section>

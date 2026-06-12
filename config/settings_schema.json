@@ -1,0 +1,6 @@
+[
+  { "name": "theme_info", "theme_name": "Brush & Soul Studio", "theme_version": "1.0.0", "theme_author": "Lickity Split Web Design", "theme_documentation_url": "https://github.com/liquid1188/brush-and-soul-theme", "theme_support_url": "https://github.com/liquid1188/brush-and-soul-theme" },
+  { "name": "Brand", "settings": [
+    { "type": "paragraph", "content": "Most content is edited per-section in the theme editor. Products, prices, and pages are managed in Shopify admin." }
+  ]}
+]

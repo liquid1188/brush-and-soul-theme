@@ -1,0 +1,34 @@
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="max-width:260px">
+        <div class="brand" style="font-family:var(--display);font-size:1.3rem;font-weight:600">Brush &amp; Soul Studio</div>
+        <p style="margin-top:.6rem">{{ section.settings.tagline }}</p>
+      </div>
+      <div class="foot-col"><h5>Shop</h5>
+        <a href="{{ routes.all_products_collection_url }}">All work</a>
+        <a href="{{ routes.root_url }}collections/originals">Originals</a>
+        <a href="{{ routes.root_url }}collections/prints">Prints</a>
+      </div>
+      <div class="foot-col"><h5>Studio</h5>
+        <a href="{{ routes.root_url }}pages/commissions">Commissions</a>
+        <a href="{{ routes.root_url }}pages/about">About</a>
+      </div>
+      <div class="foot-col"><h5>Follow</h5>
+        <a href="{{ section.settings.instagram | default: '#' }}">Instagram</a>
+        <a href="{{ section.settings.etsy | default: '#' }}">Etsy</a>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }} &middot; Caroline Likoudis</div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Handmade art rooted in nature, color, and the feminine." },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "etsy", "label": "Etsy URL" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,34 @@
+<section style="padding:48px 0">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+    <div style="border-radius:18px;overflow:hidden;border:1px solid var(--line)">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" style="width:100%;display:block">
+      {% endif %}
+    </div>
+    <div>
+      {% if product.type != blank %}<span class="tag">{{ product.type }}</span>{% endif %}
+      <h1 style="margin:.2rem 0 .4rem">{{ product.title }}</h1>
+      <div class="price" style="font-size:1.5rem;margin-bottom:1.2rem">{{ product.price | money }}</div>
+      <div class="prose" style="margin:0 0 1.6rem;font-size:1rem">{{ product.description }}</div>
+      {% form 'product', product %}
+        {% unless product.has_only_default_variant %}
+          <div class="field" style="max-width:320px"><label style="font-weight:700;font-size:.82rem;display:block;margin-bottom:.4rem">Options</label>
+            <select name="id" class="shop-sort" style="width:100%">
+              {% for v in product.variants %}
+                <option value="{{ v.id }}" {% unless v.available %}disabled{% endunless %}>{{ v.title }} — {{ v.price | money }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+        <div style="margin-top:1.2rem">
+          <button type="submit" name="add" class="btn btn-primary" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+          </button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% schema %}{ "name": "Product", "settings": [] }{% endschema %}

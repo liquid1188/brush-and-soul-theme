@@ -1,0 +1,22 @@
+<section class="page-hero"><div class="wrap"><h1>Your cart</h1></div></section>
+<section style="padding-top:10px"><div class="wrap">
+{% if cart.item_count == 0 %}
+  <p class="prose" style="text-align:center">Your cart is empty. <a href="{{ routes.all_products_collection_url }}" style="color:var(--lapis);font-weight:600">Browse the collection &rarr;</a></p>
+{% else %}
+  <form action="{{ routes.cart_url }}" method="post">
+    {% for item in cart.items %}
+      <div style="display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:14px 0">
+        <img src="{{ item.image | image_url: width: 120 }}" width="60" height="60" style="border-radius:8px;object-fit:cover" alt="{{ item.product.title | escape }}">
+        <div style="flex:1"><strong>{{ item.product.title }}</strong><div style="color:var(--ink-soft);font-size:.9rem">{{ item.variant.title }}</div></div>
+        <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" style="width:64px;padding:.5rem;border:1.5px solid var(--line);border-radius:8px">
+        <div style="min-width:90px;text-align:right">{{ item.final_line_price | money }}</div>
+      </div>
+    {% endfor %}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px">
+      <button type="submit" name="update" class="btn btn-ghost">Update</button>
+      <div style="text-align:right"><div style="color:var(--ink-soft)">Subtotal</div><div style="font-size:1.4rem;font-family:var(--display)">{{ cart.total_price | money }}</div></div>
+    </div>
+    <div style="text-align:right;margin-top:16px"><button type="submit" name="checkout" class="btn btn-primary">Checkout</button></div>
+  </form>
+{% endif %}
+</div></section>

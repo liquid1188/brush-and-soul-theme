@@ -1,0 +1,12 @@
+<a class="card" href="{{ product.url }}">
+  <div class="arch">
+    {% if product.featured_image %}
+      <img class="art-img" src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="800" height="800">
+    {% else %}
+      <div class="ph"><span>artwork</span></div>
+    {% endif %}
+  </div>
+  {% if product.type != blank %}<span class="tag">{{ product.type }}</span>{% endif %}
+  <h4>{{ product.title }}</h4>
+  <div class="price">{{ product.price | money }}</div>
+</a>

@@ -1,0 +1,31 @@
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">the hand behind the brush</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.tagline }}</p>
+  </div>
+</section>
+<section style="padding-top:14px">
+  <div class="wrap about-grid">
+    <div class="arch fill">
+      {% if section.settings.portrait %}
+        <img class="art-img" src="{{ section.settings.portrait | image_url: width: 800 }}" alt="Caroline">
+      {% else %}
+        <img class="art-img" src="{{ 'portrait.jpg' | asset_url }}" alt="Caroline in her studio">
+      {% endif %}
+    </div>
+    <div class="prose" style="margin:0">{{ section.settings.body }}</div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "I am Caroline." },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Artist, mother, wanderer of the world." },
+    { "type": "image_picker", "id": "portrait", "label": "Portrait" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>My life has been a tapestry woven from places far and near, each thread dyed in the colors of experience, each knot a story.</p><p>Now, I live in Iran, where the air carries the scent of rosewater and saffron, and the light falls like silk over ancient walls.</p><p>I believe life itself is art — not only in the canvas and the brush, but in the way we walk through a garden, sip tea at sunrise, or let the wind play with our hair.</p>" }
+  ],
+  "presets": [{ "name": "About" }]
+}
+{% endschema %}

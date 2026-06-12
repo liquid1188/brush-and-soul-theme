@@ -1,0 +1,39 @@
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">bring a piece home</span>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}
+  </div>
+</section>
+<section style="padding-top:8px">
+  <div class="wrap">
+    {% paginate collection.products by 24 %}
+      {% if collection.filters.size > 0 %}
+        <form class="shop-bar">
+          {% for filter in collection.filters %}
+            <div class="filter-group">
+              <span class="lbl">{{ filter.label }}</span>
+              <div class="seg" style="gap:.5rem">
+                {% for value in filter.values %}
+                  <a class="chip" aria-pressed="{{ value.active }}"
+                     href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}">{{ value.label }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </form>
+      {% endif %}
+      <div class="shop-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <p class="shop-empty">No pieces here yet — check back soon.</p>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}
+        <div style="text-align:center;margin-top:32px">{{ paginate | default_pagination }}</div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+{% schema %}{ "name": "Collection", "settings": [] }{% endschema %}
