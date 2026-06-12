@@ -1,18 +1,64 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
-    "vision": { "type": "vision" },
+    "hero": {
+      "type": "hero"
+    },
+    "vision": {
+      "type": "vision"
+    },
     "funnel": {
       "type": "category-funnel",
       "blocks": {
-        "b1": { "type": "category", "settings": { "title": "Originals", "subtitle": "One-of-a-kind paintings. The gallery.", "color": "#D85A30", "link": "shopify://collections/originals" } },
-        "b2": { "type": "category", "settings": { "title": "Prints", "subtitle": "Fine-art reproductions on archival paper.", "color": "#1D9E75", "link": "shopify://collections/prints" } },
-        "b3": { "type": "category", "settings": { "title": "Products", "subtitle": "Her art on cases, mugs, apparel and more.", "color": "#7F77DD", "link": "shopify://collections/products" } }
+        "b1": {
+          "type": "category",
+          "settings": {
+            "title": "Originals",
+            "subtitle": "One-of-a-kind paintings. The gallery.",
+            "color": "#D85A30",
+            "link": "shopify://collections/originals"
+          }
+        },
+        "b2": {
+          "type": "category",
+          "settings": {
+            "title": "Prints",
+            "subtitle": "Fine-art reproductions on archival paper.",
+            "color": "#1D9E75",
+            "link": "shopify://collections/prints"
+          }
+        },
+        "b3": {
+          "type": "category",
+          "settings": {
+            "title": "Products",
+            "subtitle": "Her art on cases, mugs, apparel and more.",
+            "color": "#7F77DD",
+            "link": "shopify://collections/products"
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"]
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     },
-    "featured": { "type": "featured-collection", "settings": { "collection": "frontpage", "count": 4 } },
-    "newsletter": { "type": "newsletter" }
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "originals",
+        "count": 4
+      }
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
   },
-  "order": ["hero", "vision", "funnel", "featured", "newsletter"]
+  "order": [
+    "hero",
+    "vision",
+    "funnel",
+    "featured",
+    "newsletter"
+  ]
 }
