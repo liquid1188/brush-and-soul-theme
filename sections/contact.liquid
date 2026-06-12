@@ -1,0 +1,47 @@
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">say hello</span>
+    <h1>{{ section.settings.heading }}</h1>
+    {% if section.settings.subtext != blank %}<p>{{ section.settings.subtext }}</p>{% endif %}
+  </div>
+</section>
+<section style="padding-top:18px">
+  <div class="wrap contact-grid">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div><p class="eyebrow">received with thanks</p><h3 style="font-size:1.5rem;margin:.4rem 0 .5rem">Your message is on its way.</h3><p style="color:var(--ink-soft)">Caroline will get back to you soon.</p></div>
+      {% else %}
+      <div class="form" style="margin:0">
+        <div class="form-grid">
+          <div class="field"><label for="k-name">Your name</label><input id="k-name" name="contact[name]" required></div>
+          <div class="field"><label for="k-email">Email</label><input id="k-email" type="email" name="contact[email]" required></div>
+          <div class="field full"><label for="k-subject">Subject</label><input id="k-subject" name="contact[Subject]" placeholder="What's this about?"></div>
+          <div class="field full"><label for="k-message">Message</label><textarea id="k-message" name="contact[body]" required></textarea></div>
+        </div>
+        <div class="full" style="margin-top:.4rem"><button type="submit" class="btn btn-primary">Send message</button></div>
+      </div>
+      {% endif %}
+    {% endform %}
+
+    <aside class="contact-aside">
+      <h3>The studio</h3>
+      {% if section.settings.email != blank %}<div class="row" style="margin-top:1rem"><span class="lbl">Email</span><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></div>{% endif %}
+      <div class="row"><span class="lbl">Commissions</span>Want a piece made for you? <a href="{{ routes.root_url }}pages/commissions">Start a commission &rarr;</a></div>
+      <div class="row"><span class="lbl">Find her work</span><a href="{{ section.settings.instagram | default: '#' }}">Instagram</a> &middot; <a href="{{ section.settings.etsy | default: '#' }}">Etsy</a></div>
+      <div class="row" style="margin-bottom:0"><span class="lbl">Shipping</span>Ships worldwide from the studio.</div>
+    </aside>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get in touch" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "A question about a piece, an order, a show — or just to say hello. Caroline reads every note." },
+    { "type": "text", "id": "email", "label": "Studio email" },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "etsy", "label": "Etsy URL" }
+  ],
+  "presets": [{ "name": "Contact" }]
+}
+{% endschema %}

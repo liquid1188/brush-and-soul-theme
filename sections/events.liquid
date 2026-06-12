@@ -1,0 +1,53 @@
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">come see the work in person</span>
+    <h1>{{ section.settings.heading }}</h1>
+    {% if section.settings.subtext != blank %}<p>{{ section.settings.subtext }}</p>{% endif %}
+  </div>
+</section>
+<section style="padding-top:18px">
+  <div class="wrap">
+    <div class="events-list">
+      {% for block in section.blocks %}
+        <article class="event" {{ block.shopify_attributes }}>
+          <div class="event-date"><div class="m">{{ block.settings.month }}</div><div class="d">{{ block.settings.day }}</div></div>
+          <div class="event-body">
+            <h3>{{ block.settings.title }}</h3>
+            {% if block.settings.meta != blank %}<div class="event-meta">{{ block.settings.meta }}</div>{% endif %}
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </article>
+      {% else %}
+        <p class="events-note">No events on the calendar right now — check back soon.</p>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="{{ routes.root_url }}pages/contact" class="btn btn-primary">Get in touch</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Events",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Events & shows" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Markets, exhibitions, and studio openings — where the paintings meet the world." }
+  ],
+  "blocks": [
+    { "type": "event", "name": "Event", "settings": [
+      { "type": "text", "id": "month", "label": "Month", "default": "May" },
+      { "type": "text", "id": "day", "label": "Day", "default": "17" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Spring Artisan Market" },
+      { "type": "text", "id": "meta", "label": "Time & place", "default": "10am – 5pm · Riverside Pavilion" },
+      { "type": "textarea", "id": "description", "label": "Description", "default": "Originals, prints, and a live painting corner." }
+    ]}
+  ],
+  "presets": [{
+    "name": "Events",
+    "blocks": [
+      { "type": "event", "settings": { "month": "May", "day": "17", "title": "Spring Artisan Market", "meta": "10am – 5pm · Riverside Pavilion", "description": "Originals, prints, and a live painting corner." } },
+      { "type": "event", "settings": { "month": "Jun", "day": "08", "title": "Studio Open Day", "meta": "By appointment · The Studio", "description": "See works in progress and talk commissions." } }
+    ]
+  }]
+}
+{% endschema %}
