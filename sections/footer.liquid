@@ -15,8 +15,8 @@
         <a href="{{ routes.root_url }}pages/about">About</a>
       </div>
       <div class="foot-col"><h5>Follow</h5>
-        <a href="{{ section.settings.instagram | default: '#' }}">Instagram</a>
-        <a href="{{ section.settings.etsy | default: '#' }}">Etsy</a>
+        <a href="{{ section.settings.instagram | default: 'https://www.instagram.com/carolinelikescolor' }}">Instagram</a>
+        <a href="{{ section.settings.etsy | default: 'https://www.etsy.com/shop/Likoudesigns' }}">Etsy</a>
       </div>
     </div>
     <div class="foot-bottom">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }} &middot; Caroline Likoudis</div>
