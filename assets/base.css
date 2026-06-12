@@ -45,7 +45,7 @@ h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;color:var(-
   background:var(--mat);
   border:1px solid var(--line);
   padding:20px 20px 20px;
-  display:flex;align-items:flex-end;justify-content:center;
+  display:flex;align-items:center;justify-content:center;
   overflow:hidden;position:relative;
 }
 .arch .ph{
@@ -107,7 +107,7 @@ section{padding:74px 0}
 
 /* featured cards */
 .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.card .arch{height:320px;margin-bottom:14px}
+.card .arch{height:340px;margin-bottom:14px}
 .card h4{font-family:var(--display);font-weight:500;font-size:1.14rem}
 .card .price{font-weight:700;color:var(--lapis);font-size:.95rem;margin-top:.15rem}
 .card .tag{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--pomegranate);font-weight:700}
@@ -258,5 +258,5 @@ footer .brand{color:var(--parchment)}
 .brand-mark{height:40px;width:auto;border-radius:8px;display:block}
 .brand-txt{display:flex;flex-direction:column;line-height:1.05}
 .arch img{display:block}
-.arch .art-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:9px;border:1.5px solid rgba(42,27,46,.10)}
+.arch .art-img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:3px;border:none;filter:drop-shadow(0 5px 12px rgba(42,27,46,.16))}
 .arch.fill .art-img{aspect-ratio:auto;width:100%;height:100%;object-fit:cover;border:none;border-radius:0}
