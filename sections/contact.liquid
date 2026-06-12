@@ -27,7 +27,7 @@
       <h3>The studio</h3>
       {% if section.settings.email != blank %}<div class="row" style="margin-top:1rem"><span class="lbl">Email</span><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></div>{% endif %}
       <div class="row"><span class="lbl">Commissions</span>Want a piece made for you? <a href="{{ routes.root_url }}pages/commissions">Start a commission &rarr;</a></div>
-      <div class="row"><span class="lbl">Find her work</span><a href="{{ section.settings.instagram | default: 'https://www.instagram.com/carolinelikescolor' }}">Instagram</a> &middot; <a href="{{ section.settings.etsy | default: 'https://www.etsy.com/shop/Likoudesigns' }}">Etsy</a></div>
+      <div class="row"><span class="lbl">Find her work</span><a href="{{ section.settings.instagram | default: 'https://www.instagram.com/likoudesigns' }}">Instagram</a> &middot; <a href="{{ section.settings.etsy | default: 'https://www.etsy.com/shop/Likoudesigns' }}">Etsy</a></div>
       <div class="row" style="margin-bottom:0"><span class="lbl">Shipping</span>Ships worldwide from the studio.</div>
     </aside>
   </div>
