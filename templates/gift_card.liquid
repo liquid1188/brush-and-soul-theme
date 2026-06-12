@@ -1,0 +1,7 @@
+<div class="wrap" style="padding:80px 0;max-width:480px;text-align:center">
+  <h1>{{ shop.name }} Gift Card</h1>
+  <p style="font-size:2rem;font-family:var(--display);margin:.5rem 0">{{ gift_card.balance | money }}</p>
+  <p style="color:var(--ink-soft)">Gift card code</p>
+  <p style="font-size:1.3rem;letter-spacing:.12em">{{ gift_card.code | format_code }}</p>
+  {% if gift_card.qr_identifier %}<img src="{{ gift_card.qr_identifier }}" alt="QR code" style="margin-top:18px">{% endif %}
+</div>

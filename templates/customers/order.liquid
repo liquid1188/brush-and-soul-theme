@@ -1,0 +1,9 @@
+<div class="wrap" style="padding:60px 0;max-width:760px">
+  <p><a href="{{ routes.account_url }}">&larr; Account</a></p>
+  <h1>Order {{ order.name }}</h1>
+  <p style="color:var(--ink-soft)">{{ order.created_at | date: '%B %d, %Y' }}</p>
+  {% for line in order.line_items %}
+    <p>{{ line.quantity }} × {{ line.title }} — {{ line.final_line_price | money }}</p>
+  {% endfor %}
+  <p style="margin-top:.6rem"><strong>Total: {{ order.total_price | money }}</strong></p>
+</div>

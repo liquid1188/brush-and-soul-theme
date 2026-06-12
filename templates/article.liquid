@@ -1,0 +1,6 @@
+<div class="wrap" style="padding:60px 0;max-width:760px">
+  <p><a href="{{ blog.url }}">&larr; {{ blog.title }}</a></p>
+  <h1>{{ article.title }}</h1>
+  <p style="color:var(--ink-soft)">{{ article.published_at | date: '%B %d, %Y' }}</p>
+  <div class="rte">{{ article.content }}</div>
+</div>

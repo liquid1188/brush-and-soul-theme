@@ -1,0 +1,10 @@
+<div class="wrap" style="padding:60px 0;max-width:420px">
+  <h1>Log in</h1>
+  {% form 'customer_login' %}
+    {{ form.errors | default_errors }}
+    <div class="field"><label>Email</label><input type="email" name="customer[email]" required></div>
+    <div class="field"><label>Password</label><input type="password" name="customer[password]"></div>
+    <button type="submit" class="btn btn-primary" style="margin-top:.6rem">Sign in</button>
+  {% endform %}
+  <p style="margin-top:1rem"><a href="{{ routes.account_register_url }}">Create account</a></p>
+</div>

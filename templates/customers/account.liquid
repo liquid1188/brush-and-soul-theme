@@ -1,0 +1,14 @@
+<div class="wrap" style="padding:60px 0;max-width:760px">
+  <h1>My account</h1>
+  <p>Welcome, {{ customer.first_name | default: customer.email }}. <a href="{{ routes.account_logout_url }}">Log out</a></p>
+  <p><a href="{{ routes.account_addresses_url }}">Manage addresses</a></p>
+  <h2 style="margin-top:1.4rem">Order history</h2>
+  {% paginate customer.orders by 12 %}
+    {% for order in customer.orders %}
+      <p><a href="{{ order.customer_url }}">{{ order.name }}</a> — {{ order.created_at | date: '%b %d, %Y' }} — {{ order.financial_status }} — {{ order.total_price | money }}</p>
+    {% else %}
+      <p>No orders yet.</p>
+    {% endfor %}
+    {{ paginate | default_pagination }}
+  {% endpaginate %}
+</div>

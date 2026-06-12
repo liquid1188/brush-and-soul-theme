@@ -1,0 +1,12 @@
+<div class="wrap" style="padding:60px 0;max-width:420px">
+  <h1>Create account</h1>
+  {% form 'create_customer' %}
+    {{ form.errors | default_errors }}
+    <div class="field"><label>First name</label><input type="text" name="customer[first_name]"></div>
+    <div class="field"><label>Last name</label><input type="text" name="customer[last_name]"></div>
+    <div class="field"><label>Email</label><input type="email" name="customer[email]" required></div>
+    <div class="field"><label>Password</label><input type="password" name="customer[password]" required></div>
+    <button type="submit" class="btn btn-primary" style="margin-top:.6rem">Create</button>
+  {% endform %}
+  <p style="margin-top:1rem"><a href="{{ routes.account_login_url }}">Already have an account? Log in</a></p>
+</div>
