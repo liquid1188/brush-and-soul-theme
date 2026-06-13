@@ -260,3 +260,11 @@ footer .brand{color:var(--parchment)}
 .arch img{display:block}
 .arch .art-img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:2px;border:none}
 .arch.fill .art-img{aspect-ratio:auto;width:100%;height:100%;object-fit:cover;border:none;border-radius:0}
+
+/* Contact page: two-column layout + tidy studio aside labels */
+.contact-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:46px;align-items:start}
+.contact-aside h3{font-family:var(--display);font-size:1.4rem;margin:0 0 .5rem}
+.contact-aside .row{display:block;margin-bottom:1.05rem;line-height:1.55;color:var(--ink-soft)}
+.contact-aside .row:last-child{margin-bottom:0}
+.contact-aside .lbl{display:block;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.15rem}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:30px}}
