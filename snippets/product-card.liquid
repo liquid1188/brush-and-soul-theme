@@ -1,5 +1,5 @@
 <a class="card" href="{{ product.url }}">
-  <div class="arch">
+  <div class="arch{% unless product.type == 'Original' %} fill{% endunless %}">
     {% if product.featured_image %}
       <img class="art-img" src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="800" height="800">
     {% else %}
