@@ -1,0 +1,7 @@
+{%- case page.handle -%}
+  {%- when 'about' -%}{% section 'about' %}
+  {%- when 'commissions' -%}{% section 'commissions' %}
+  {%- when 'contact' -%}{% section 'contact' %}
+  {%- when 'events' -%}{% section 'events' %}
+  {%- else -%}{% section 'main-page' %}
+{%- endcase -%}
