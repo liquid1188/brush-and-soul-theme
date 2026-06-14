@@ -12,28 +12,95 @@
     "funnel": {
       "type": "category-funnel",
       "blocks": {
-        "b1": { "type": "category", "settings": { "title": "Originals", "subtitle": "One-of-a-kind paintings. The gallery.", "color": "#D85A30", "link": "shopify://collections/originals" } },
-        "b2": { "type": "category", "settings": { "title": "Prints", "subtitle": "Fine-art reproductions on archival paper.", "color": "#1D9E75", "link": "shopify://collections/prints" } },
-        "b3": { "type": "category", "settings": { "title": "Products", "subtitle": "Her art on cases, mugs, apparel and more.", "color": "#7F77DD", "link": "shopify://collections/products" } }
+        "b1": {
+          "type": "category",
+          "settings": {
+            "title": "Originals",
+            "subtitle": "One-of-a-kind paintings. The gallery.",
+            "color": "#D85A30",
+            "link": "shopify://collections/originals"
+          }
+        },
+        "b2": {
+          "type": "category",
+          "settings": {
+            "title": "Prints",
+            "subtitle": "Fine-art reproductions on archival paper.",
+            "color": "#1D9E75",
+            "link": "shopify://collections/prints"
+          }
+        },
+        "b3": {
+          "type": "category",
+          "settings": {
+            "title": "Products",
+            "subtitle": "Her art on cases, mugs, apparel and more.",
+            "color": "#7F77DD",
+            "link": "shopify://collections/products"
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"]
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
     },
     "featured": {
       "type": "featured-collection",
-      "settings": { "collection": "originals", "count": 4 }
+      "settings": {
+        "collection": "originals",
+        "count": 4
+      }
     },
     "reviews": {
       "type": "reviews",
       "blocks": {
-        "r1": { "type": "review", "settings": { "stars": 5, "quote": "Sample review — replace with a real one in the editor.", "author": "A collector", "detail": "via Etsy" } },
-        "r2": { "type": "review", "settings": { "stars": 5, "quote": "Sample review — replace with a real one in the editor.", "author": "Commission client", "detail": "original piece" } },
-        "r3": { "type": "review", "settings": { "stars": 5, "quote": "Sample review — replace with a real one in the editor.", "author": "A print buyer", "detail": "verified" } }
+        "r1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "I love this! LikouDesigns is so creative and beautiful. I had a hard time choosing just one so I purchased three!",
+            "author": "Nicole",
+            "detail": "via Etsy"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "Beautiful print with vibrant colors!",
+            "author": "Marjan",
+            "detail": "via Etsy"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "Lovely quality poster, really happy.",
+            "author": "Gillian",
+            "detail": "via Etsy"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3"]
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ]
     },
     "newsletter": {
       "type": "newsletter"
     }
   },
-  "order": ["brandbanner", "hero", "vision", "funnel", "featured", "reviews", "newsletter"]
+  "order": [
+    "brandbanner",
+    "hero",
+    "vision",
+    "funnel",
+    "featured",
+    "reviews",
+    "newsletter"
+  ]
 }
