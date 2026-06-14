@@ -269,3 +269,20 @@ footer .brand{color:var(--parchment)}
 .contact-aside .row:last-child{margin-bottom:0}
 .contact-aside .lbl{display:block;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.15rem}
 @media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:30px}}
+
+/* brand banner masthead */
+.brand-banner{position:relative;width:100%;margin:0;line-height:0;background:var(--ink)}
+.brand-banner img{width:100%;height:clamp(200px,32vw,400px);object-fit:cover;object-position:center;display:block}
+.brand-banner--rounded{padding:18px 28px 0;background:transparent}
+.brand-banner--rounded img{border-radius:20px}
+.brand-banner__cta{position:absolute;left:0;right:0;bottom:26px;text-align:center;line-height:normal}
+
+/* reviews strip */
+.reviews{background:var(--parchment-deep)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev{background:var(--parchment);border:1px solid var(--line);border-radius:22px 22px 8px 8px;padding:28px 26px;display:flex;flex-direction:column;gap:.8rem;box-shadow:0 6px 16px rgba(42,27,46,.06)}
+.rev .stars{color:var(--saffron);font-size:1rem;letter-spacing:.18em;line-height:1}
+.rev blockquote{font-family:var(--display);font-style:italic;font-size:1.14rem;color:var(--ink);line-height:1.4;margin:0}
+.rev .who{font-weight:700;font-size:.85rem;color:var(--ink-soft);letter-spacing:.02em;margin-top:auto}
+.rev .who span{font-weight:400}
+@media(max-width:900px){.rev-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}

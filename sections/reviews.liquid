@@ -1,0 +1,55 @@
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="rev-grid">
+      {% for block in section.blocks %}
+        <figure class="rev" {{ block.shopify_attributes }}>
+          {% if block.settings.stars > 0 %}
+            <div class="stars" aria-label="{{ block.settings.stars }} out of 5 stars">
+              {% for i in (1..block.settings.stars) %}&#9733;{% endfor %}
+            </div>
+          {% endif %}
+          <blockquote>{{ block.settings.quote }}</blockquote>
+          {% if block.settings.author != blank %}
+            <figcaption class="who">{{ block.settings.author }}{% if block.settings.detail != blank %} <span>&middot; {{ block.settings.detail }}</span>{% endif %}</figcaption>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "from those who live with the work" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Kind words" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Stars", "min": 0, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Sample review — replace with a real one." },
+        { "type": "text", "id": "author", "label": "Name", "default": "A collector" },
+        { "type": "text", "id": "detail", "label": "Detail", "default": "via Etsy" }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "Sample review — replace with a real one in the editor.", "author": "A collector", "detail": "via Etsy", "stars": 5 } },
+        { "type": "review", "settings": { "quote": "Sample review — replace with a real one in the editor.", "author": "Commission client", "detail": "original piece", "stars": 5 } },
+        { "type": "review", "settings": { "quote": "Sample review — replace with a real one in the editor.", "author": "A print buyer", "detail": "verified", "stars": 5 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
