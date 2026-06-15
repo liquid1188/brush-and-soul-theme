@@ -9,4 +9,5 @@
   {% if product.type != blank %}<span class="tag">{{ product.type }}</span>{% endif %}
   <h4>{{ product.title }}</h4>
   <div class="price">{{ product.price | money }}</div>
+  {% render 'promo-badge', product: product, variant: 'card' %}
 </a>

@@ -56,6 +56,8 @@
         {% endif %}
       </div>
 
+      {% render 'promo-badge', product: product, variant: 'pdp' %}
+
       {% if product.description != blank %}
         <div class="prose pdp-desc">{{ product.description }}</div>
       {% endif %}
@@ -101,7 +103,9 @@
   .pdp-thumb.is-active{border-color:var(--lapis)}
   .pdp-thumb:hover{transform:translateY(-1px)}
   .pdp-title{margin:.2rem 0 .5rem;line-height:1.2;overflow-wrap:anywhere}
-  .pdp-price{font-size:1.35rem;margin-bottom:1.2rem}
+  .pdp-price{font-size:1.35rem;margin-bottom:.6rem}
+  .pdp-promo{display:inline-block;font-size:.85rem;font-weight:600;color:var(--pomegranate);background:rgba(176,58,46,.07);border:1px solid rgba(176,58,46,.22);padding:.32rem .72rem;border-radius:999px;margin-bottom:1.2rem}
+  .pdp-promo-note{font-weight:500;opacity:.75}
   .pdp-from{font-weight:500;opacity:.8}
   .pdp-desc{margin:0 0 1.6rem;font-size:1rem}
   .pdp-options{max-width:340px}

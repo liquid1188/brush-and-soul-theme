@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders the prints promo badge for a given product, but ONLY when:
+    1. settings.prints_promo_active is ON (you flip this when the Shopify discount is live), AND
+    2. the product belongs to the chosen promo collection.
+  Usage: {% render 'promo-badge', product: product, variant: 'card' %}
+  variant: 'card' (grid) or 'pdp' (product page) — controls the CSS class.
+{%- endcomment -%}
+{%- if settings.prints_promo_active and settings.prints_promo_text != blank -%}
+  {%- assign promo_handle = settings.prints_promo_collection.handle -%}
+  {%- assign show = false -%}
+  {%- if promo_handle == blank -%}
+    {%- comment -%} no collection chosen → don't show anywhere, to stay safe {%- endcomment -%}
+  {%- else -%}
+    {%- for c in product.collections -%}
+      {%- if c.handle == promo_handle -%}{%- assign show = true -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if show -%}
+    {%- if variant == 'pdp' -%}
+      <div class="pdp-promo">{{ settings.prints_promo_text }} <span class="pdp-promo-note">&middot; applied at checkout</span></div>
+    {%- else -%}
+      <div class="promo-line">{{ settings.prints_promo_text }}</div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

@@ -1,6 +1,47 @@
 [
-  { "name": "theme_info", "theme_name": "Brush & Soul Studio", "theme_version": "1.0.0", "theme_author": "Lickity Split Web Design", "theme_documentation_url": "https://github.com/liquid1188/brush-and-soul-theme", "theme_support_url": "https://github.com/liquid1188/brush-and-soul-theme" },
-  { "name": "Brand", "settings": [
-    { "type": "paragraph", "content": "Most content is edited per-section in the theme editor. Products, prices, and pages are managed in Shopify admin." }
-  ]}
+  {
+    "name": "theme_info",
+    "theme_name": "Brush & Soul Studio",
+    "theme_version": "1.0.0",
+    "theme_author": "Lickity Split Web Design",
+    "theme_documentation_url": "https://github.com/liquid1188/brush-and-soul-theme",
+    "theme_support_url": "https://github.com/liquid1188/brush-and-soul-theme"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Most content is edited per-section in the theme editor. Products, prices, and pages are managed in Shopify admin."
+      }
+    ]
+  },
+  {
+    "name": "Promotions",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Turn this on ONLY while the matching discount is active in Shopify > Discounts. Turning it off hides the badge everywhere instantly."
+      },
+      {
+        "type": "checkbox",
+        "id": "prints_promo_active",
+        "label": "Prints promo active",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "prints_promo_text",
+        "label": "Promo badge text",
+        "default": "Buy 2 prints, get a 3rd 50% off",
+        "info": "Match this to the wording of the live discount."
+      },
+      {
+        "type": "collection",
+        "id": "prints_promo_collection",
+        "label": "Promo applies to collection",
+        "info": "The badge shows only on products in this collection (e.g. Prints)."
+      }
+    ]
+  }
 ]
