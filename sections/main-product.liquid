@@ -20,8 +20,10 @@
         {% if product.featured_image %}
           <img id="pdp-main"
                src="{{ product.featured_image | image_url: width: 1400 }}"
+               data-zoom="{{ product.featured_image | image_url: width: 2400 }}"
                alt="{{ product.featured_image.alt | default: product.title | escape }}"
                width="1400" height="1400">
+          <span class="pdp-zoom-hint" aria-hidden="true">Click to zoom</span>
         {% else %}
           <div class="ph"><span>artwork</span></div>
         {% endif %}
@@ -32,6 +34,7 @@
           {% for image in product.images %}
             <button type="button" class="pdp-thumb{% if forloop.first %} is-active{% endif %}"
                     data-full="{{ image | image_url: width: 1400 }}"
+                    data-zoom="{{ image | image_url: width: 2400 }}"
                     aria-label="View image {{ forloop.index }}">
               <img src="{{ image | image_url: width: 200 }}"
                    alt="{{ image.alt | default: product.title | escape }}"
@@ -87,6 +90,11 @@
     </div>
 
   </div>
+
+  <div id="pdp-lightbox" class="pdp-lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Zoomed artwork">
+    <button type="button" class="pdp-lightbox-close" aria-label="Close">&times;</button>
+    <img id="pdp-lightbox-img" src="" alt="{{ product.title | escape }}">
+  </div>
 </section>
 
 <style>
@@ -96,6 +104,20 @@
     display:flex;align-items:center;justify-content:center;min-height:420px}
   .pdp-stage img{max-width:100%;max-height:600px;width:auto;height:auto;display:block;border-radius:3px;
     object-fit:contain;filter:drop-shadow(0 8px 22px rgba(42,27,46,.18))}
+  .pdp-stage{position:relative}
+  .pdp-stage img{cursor:zoom-in}
+  .pdp-zoom-hint{position:absolute;bottom:14px;right:14px;background:rgba(42,27,46,.72);color:#fff;
+    font-size:.72rem;font-weight:600;letter-spacing:.02em;padding:.3rem .6rem;border-radius:999px;
+    pointer-events:none;opacity:0;transition:opacity .18s}
+  .pdp-stage:hover .pdp-zoom-hint{opacity:1}
+  .pdp-lightbox{position:fixed;inset:0;z-index:1000;background:rgba(20,12,22,.92);
+    display:flex;align-items:center;justify-content:center;padding:4vmin;cursor:zoom-out}
+  .pdp-lightbox[hidden]{display:none}
+  .pdp-lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:4px;
+    box-shadow:0 12px 50px rgba(0,0,0,.5)}
+  .pdp-lightbox-close{position:absolute;top:18px;right:24px;background:none;border:none;color:#fff;
+    font-size:2.4rem;line-height:1;cursor:pointer;opacity:.85;padding:.2rem .6rem}
+  .pdp-lightbox-close:hover{opacity:1}
   .pdp-thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
   .pdp-thumb{width:72px;height:72px;padding:4px;border:1px solid var(--line);border-radius:10px;
     background:#fff;cursor:pointer;overflow:hidden;transition:border-color .15s,transform .15s}
@@ -128,11 +150,32 @@
     document.querySelectorAll('.pdp-thumb').forEach(function(t){
       t.addEventListener('click', function(){
         var full = t.getAttribute('data-full');
+        var zoom = t.getAttribute('data-zoom');
         if(full){ main.src = full; }
+        if(zoom){ main.setAttribute('data-zoom', zoom); }
         document.querySelectorAll('.pdp-thumb').forEach(function(x){ x.classList.remove('is-active'); });
         t.classList.add('is-active');
       });
     });
+    // Lightbox zoom
+    var lb = document.getElementById('pdp-lightbox');
+    var lbImg = document.getElementById('pdp-lightbox-img');
+    var lbClose = lb ? lb.querySelector('.pdp-lightbox-close') : null;
+    function openLB(){
+      if(!lb) return;
+      lbImg.src = main.getAttribute('data-zoom') || main.src;
+      lb.hidden = false; lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB(){
+      if(!lb) return;
+      lb.hidden = true; lb.setAttribute('aria-hidden','true');
+      lbImg.src = ''; document.body.style.overflow = '';
+    }
+    main.addEventListener('click', openLB);
+    if(lb){ lb.addEventListener('click', closeLB); }
+    if(lbClose){ lbClose.addEventListener('click', closeLB); }
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLB(); });
   })();
 </script>
 {% schema %}{ "name": "Product", "settings": [] }{% endschema %}
