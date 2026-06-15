@@ -27,7 +27,15 @@
         {% for product in collection.products %}
           {% render 'product-card', product: product %}
         {% else %}
-          <p class="shop-empty">No pieces here yet — check back soon.</p>
+          {% assign active_filters = 0 %}
+          {% for filter in collection.filters %}
+            {% if filter.active_values.size > 0 %}{% assign active_filters = active_filters | plus: 1 %}{% endif %}
+          {% endfor %}
+          {% if active_filters > 0 %}
+            <p class="shop-empty">No pieces match these filters. <a href="{{ collection.url }}">Clear filters</a> to see everything.</p>
+          {% else %}
+            <p class="shop-empty">No pieces here yet — check back soon.</p>
+          {% endif %}
         {% endfor %}
       </div>
       {% if paginate.pages > 1 %}
