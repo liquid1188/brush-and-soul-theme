@@ -272,7 +272,7 @@ footer .brand{color:var(--parchment)}
 
 /* brand banner masthead */
 .brand-banner{position:relative;width:100%;margin:0;line-height:0;background:var(--ink)}
-.brand-banner img{width:100%;height:clamp(200px,32vw,400px);object-fit:cover;object-position:center;display:block}
+.brand-banner img{width:100%;height:auto;display:block}
 .brand-banner--rounded{padding:18px 28px 0;background:transparent}
 .brand-banner--rounded img{border-radius:20px}
 .brand-banner__cta{position:absolute;left:0;right:0;bottom:26px;text-align:center;line-height:normal}
