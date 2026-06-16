@@ -1,7 +1,14 @@
 <section style="padding:34px 0 18px">
-  <div class="wrap" style="max-width:780px;text-align:center">
-    {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
-    <p style="font-family:var(--display);font-size:1.5rem;line-height:1.45;color:var(--ink);margin-top:.7rem">{{ section.settings.text }}</p>
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;gap:2.4rem;align-items:center;justify-content:center;max-width:1020px;margin:0 auto">
+      <figure style="flex:0 1 350px;margin:0;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.14)">
+        <img src="{% if section.settings.photo %}{{ section.settings.photo | image_url: width: 900 }}{% else %}{{ 'caroline-studio.jpg' | asset_url }}{% endif %}" alt="Caroline in her studio" style="width:100%;display:block" loading="lazy">
+      </figure>
+      <div style="flex:1 1 340px;min-width:280px">
+        {% if section.settings.eyebrow != blank %}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{% endif %}
+        <p style="font-family:var(--display);font-size:1.5rem;line-height:1.45;color:var(--ink);margin-top:.7rem">{{ section.settings.text }}</p>
+      </div>
+    </div>
   </div>
 </section>
 {% schema %}
@@ -9,7 +16,8 @@
   "name": "Vision",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "our vision" },
-    { "type": "textarea", "id": "text", "label": "Vision text", "default": "Dive into a realm where colors carry stories, and every brushstroke holds a piece of the soul. Here, nature's curves and flowing lines weave into works that are meant to be lived with — art that whispers beauty into your everyday, that invites you to pause, breathe, and see the world anew." }
+    { "type": "textarea", "id": "text", "label": "Vision text", "default": "Dive into a realm where colors carry stories, and every brushstroke holds a piece of the soul. Here, nature's curves and flowing lines weave into works that are meant to be lived with — art that whispers beauty into your everyday, that invites you to pause, breathe, and see the world anew." },
+    { "type": "image_picker", "id": "photo", "label": "Artist photo (studio)" }
   ],
   "presets": [{ "name": "Vision" }]
 }
