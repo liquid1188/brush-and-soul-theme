@@ -6,6 +6,15 @@
   </div>
 </section>
 
+<section style="padding:10px 0 2px">
+  <div class="wrap" style="max-width:560px;text-align:center">
+    <figure style="margin:0;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.14)">
+      <img src="{% if section.settings.photo %}{{ section.settings.photo | image_url: width: 1200 }}{% else %}{{ 'caroline-painting.jpg' | asset_url }}{% endif %}" alt="Caroline painting in her studio" style="width:100%;display:block" loading="lazy">
+    </figure>
+    <p class="eyebrow" style="margin-top:.7rem">caroline at the easel</p>
+  </div>
+</section>
+
 <section style="padding-top:18px">
   <div class="wrap">
     <div class="sec-head"><h2>How it works</h2></div>
@@ -142,4 +151,4 @@
   function multi(id,set){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');if(on)set.delete(b.dataset.v);else set.add(b.dataset.v);update();});}
   single('seg-size','size');single('seg-medium','medium');single('seg-surface','surface');single('seg-detail','detail');multi('seg-embellish',emb);update();
 </script>
-{% schema %}{ "name": "Commissions", "settings": [] }{% endschema %}
+{% schema %}{ "name": "Commissions", "settings": [ { "type": "image_picker", "id": "photo", "label": "Artist photo (in the studio)" } ] }{% endschema %}
