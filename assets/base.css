@@ -107,10 +107,10 @@ section{padding:74px 0}
 
 /* featured cards */
 .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.card .arch{height:auto;aspect-ratio:4/5;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:30px 30px 8px 8px;padding:8px 8px 10px;box-shadow:0 6px 16px rgba(42,27,46,.08);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
-.card .arch .art-img{object-fit:contain;border-radius:2px;width:96%;height:94%;object-position:bottom center;align-self:flex-end;margin-bottom:2px}
+.card .arch{height:auto;aspect-ratio:4/5;margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:30px 30px 8px 8px;padding:0;box-shadow:0 6px 16px rgba(42,27,46,.08);overflow:hidden;display:block}
+.card .arch .art-img{position:absolute;inset:0;object-fit:cover;border-radius:0;width:100%;height:100%;object-position:center;margin:0}
 .card .arch{position:relative}
-.card .arch .art-img--hover{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);opacity:0;transition:opacity .35s ease}
+.card .arch .art-img--hover{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
 .card:hover .arch .art-img--hover{opacity:1}
 .card:hover .arch .art-img--primary{opacity:0;transition:opacity .35s ease}
 @media (hover:none){.card .arch .art-img--hover{display:none}.card:hover .arch .art-img--primary{opacity:1}}
