@@ -100,7 +100,8 @@ section{padding:74px 0}
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .cat{display:block;text-align:center;transition:transform .2s ease}
 .cat:hover{transform:translateY(-6px)}
-.cat .arch{height:360px;margin-bottom:18px}
+.cat .arch{height:360px;margin-bottom:18px;padding:0}
+.cat .arch .art-img{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center;margin:0;align-self:auto}
 .cat h3{font-size:1.5rem;margin-bottom:.25rem}
 .cat .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
 .cat p{color:var(--ink-soft);font-size:.95rem}
