@@ -35,6 +35,7 @@
             <button type="button" class="pdp-thumb{% if forloop.first %} is-active{% endif %}"
                     data-full="{{ image | image_url: width: 1400 }}"
                     data-zoom="{{ image | image_url: width: 2400 }}"
+                    data-variant-ids="{{ image.variant_ids | join: ',' }}"
                     aria-label="View image {{ forloop.index }}">
               <img src="{{ image | image_url: width: 200 }}"
                    alt="{{ image.alt | default: product.title | escape }}"
@@ -147,6 +148,29 @@
   (function(){
     var main = document.getElementById('pdp-main');
     if(!main) return;
+
+    // Variant -> model image map (each phone-case variant has its own featured image)
+    var VIMG = { {% for v in product.variants %}{% if v.featured_image %}"{{ v.id }}":{f:"{{ v.featured_image | image_url: width: 1400 }}",z:"{{ v.featured_image | image_url: width: 2400 }}"},{% endif %}{% endfor %} };
+    var pvSel = document.getElementById('pdp-variant');
+    function applyVariant(vid){
+      vid = String(vid);
+      if(VIMG[vid]){ main.src = VIMG[vid].f; main.setAttribute('data-zoom', VIMG[vid].z); }
+      var thumbs = document.querySelectorAll('.pdp-thumb');
+      var firstVisible=null, exactThumb=null;
+      thumbs.forEach(function(t){
+        var raw=(t.getAttribute('data-variant-ids')||'').trim();
+        var ids = raw ? raw.split(',') : [];
+        // show generic (unlinked) images for every model, plus images linked to THIS model; hide other models' images
+        var show = ids.length===0 || ids.indexOf(vid)!==-1;
+        t.style.display = show ? '' : 'none';
+        t.classList.remove('is-active');
+        if(show && !firstVisible) firstVisible=t;
+        if(ids.indexOf(vid)!==-1 && !exactThumb) exactThumb=t;
+      });
+      var act = exactThumb || firstVisible;
+      if(act) act.classList.add('is-active');
+    }
+    if(pvSel){ pvSel.addEventListener('change', function(){ applyVariant(this.value); }); applyVariant(pvSel.value); }
     document.querySelectorAll('.pdp-thumb').forEach(function(t){
       t.addEventListener('click', function(){
         var full = t.getAttribute('data-full');

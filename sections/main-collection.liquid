@@ -1,7 +1,7 @@
 <section class="page-hero">
   <div class="wrap">
     <span class="eyebrow">bring a piece home</span>
-    <h1>{{ collection.title }}</h1>
+    <h1>{% if collection.handle == 'all' %}Shop{% else %}{{ collection.title }}{% endif %}</h1>
     {% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}
   </div>
 </section>
@@ -17,6 +17,15 @@
         {%- if f.max_value.value -%}{%- assign amax = f.max_value.value | round -%}{%- endif -%}
       {%- endif -%}{%- endfor -%}
       <div class="shop-bar">
+        <div class="filter-group cat-toggle">
+          <span class="lbl">Browse</span>
+          <div class="seg">
+            <a class="chip" aria-pressed="{% if collection.handle == 'all' %}true{% else %}false{% endif %}" href="{{ routes.all_products_collection_url }}">All</a>
+            <a class="chip" aria-pressed="{% if collection.handle == 'originals' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/originals">Originals</a>
+            <a class="chip" aria-pressed="{% if collection.handle == 'prints' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/prints">Prints</a>
+            <a class="chip" aria-pressed="{% if collection.handle == 'products' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/products">Products</a>
+          </div>
+        </div>
         <div class="filter-group">
           <span class="lbl">Price</span>
           <div class="seg">

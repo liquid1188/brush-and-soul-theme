@@ -249,6 +249,8 @@ footer .brand{color:var(--parchment)}
 }
 
 /* shop / catalog */
+.cat-toggle{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:2px}
+.cat-toggle .chip[aria-pressed="true"]{background:var(--pomegranate);border-color:var(--pomegranate)}
 .shop-bar{background:var(--parchment-deep);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:32px;display:grid;gap:16px}
 .filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filter-group > .lbl{font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}
