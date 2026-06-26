@@ -1,4 +1,4 @@
-<a class="card" href="{{ product.url }}">
+<a class="card{% if product.images.size <= 1 %} card--single{% endif %}" href="{{ product.url }}">
   <div class="arch card-frame">
     {% if product.featured_image %}
       <img class="art-img art-img--primary" src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="800" height="800">
