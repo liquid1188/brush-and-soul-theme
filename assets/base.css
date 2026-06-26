@@ -192,7 +192,7 @@ section{padding:74px 0}
 .prose ul{margin:.2rem 0 1.3rem;padding-left:1.25rem;list-style:disc}
 .prose li{margin-bottom:.5rem;padding-left:.15rem}
 .prose .pull{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--ink);line-height:1.3;margin:2rem 0;text-align:center}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .about-grid .arch{height:680px}
 
 /* faq */
