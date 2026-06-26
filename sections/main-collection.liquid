@@ -8,21 +8,47 @@
 <section style="padding-top:8px">
   <div class="wrap">
     {% paginate collection.products by 24 %}
-      {% if collection.filters.size > 0 %}
-        <form class="shop-bar">
-          {% for filter in collection.filters %}
+      {%- assign cur_sort = collection.sort_by | default: collection.default_sort_by -%}
+      {%- assign sortq = '' -%}
+      {%- if collection.sort_by != blank -%}{%- assign sortq = '&sort_by=' | append: collection.sort_by -%}{%- endif -%}
+      {%- assign amin = -1 -%}{%- assign amax = -1 -%}
+      {%- for f in collection.filters -%}{%- if f.type == 'price_range' -%}
+        {%- if f.min_value.value -%}{%- assign amin = f.min_value.value | round -%}{%- endif -%}
+        {%- if f.max_value.value -%}{%- assign amax = f.max_value.value | round -%}{%- endif -%}
+      {%- endif -%}{%- endfor -%}
+      <div class="shop-bar">
+        <div class="filter-group">
+          <span class="lbl">Price</span>
+          <div class="seg">
+            <a class="chip" aria-pressed="{% if amin == -1 and amax == -1 %}true{% else %}false{% endif %}" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">All</a>
+            <a class="chip" aria-pressed="{% if amin == -1 and amax == 25 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.lte=25{{ sortq }}">Under $25</a>
+            <a class="chip" aria-pressed="{% if amin == 25 and amax == 50 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=25&filter.v.price.lte=50{{ sortq }}">$25–$50</a>
+            <a class="chip" aria-pressed="{% if amin == 50 and amax == 100 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=50&filter.v.price.lte=100{{ sortq }}">$50–$100</a>
+            <a class="chip" aria-pressed="{% if amin == 100 and amax == 500 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=100&filter.v.price.lte=500{{ sortq }}">$100–$500</a>
+            <a class="chip" aria-pressed="{% if amin == 500 and amax == -1 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=500{{ sortq }}">Over $500</a>
+          </div>
+        </div>
+        {%- for filter in collection.filters -%}
+          {%- unless filter.type == 'price_range' -%}
             <div class="filter-group">
               <span class="lbl">{{ filter.label }}</span>
-              <div class="seg" style="gap:.5rem">
-                {% for value in filter.values %}
-                  <a class="chip" aria-pressed="{{ value.active }}"
-                     href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}">{{ value.label }}</a>
-                {% endfor %}
+              <div class="seg">
+                {%- for value in filter.values -%}
+                  <a class="chip" aria-pressed="{{ value.active }}" href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}">{{ value.label }}</a>
+                {%- endfor -%}
               </div>
             </div>
-          {% endfor %}
-        </form>
-      {% endif %}
+          {%- endunless -%}
+        {%- endfor -%}
+        <div class="filter-group">
+          <span class="lbl">Sort</span>
+          <select class="shop-sort" onchange="var u=new URL(location.href);u.searchParams.set(&apos;sort_by&apos;,this.value);location.href=u.toString();">
+            {%- for opt in collection.sort_options -%}
+              <option value="{{ opt.value }}"{% if opt.value == cur_sort %} selected{% endif %}>{{ opt.name }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      </div>
       <div class="shop-grid">
         {% for product in collection.products %}
           {% render 'product-card', product: product %}
