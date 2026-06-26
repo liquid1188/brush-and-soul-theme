@@ -193,8 +193,10 @@ section{padding:74px 0}
 .prose li{margin-bottom:.5rem;padding-left:.15rem}
 .prose .pull{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--ink);line-height:1.3;margin:2rem 0;text-align:center}
 .about-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:56px;align-items:center}
-.about-grid .prose{max-width:none;margin:0}
-.about-grid .arch{height:680px}
+.about-grid .prose{max-width:none;margin:0;font-size:1.02rem;letter-spacing:-.01em}
+.about-grid .prose p{margin-bottom:1.05rem}
+.about-grid .prose li{margin-bottom:.38rem}
+.about-grid .arch{height:760px}
 
 /* faq */
 .faq{max-width:760px;margin:0 auto}
