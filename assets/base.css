@@ -311,3 +311,10 @@ footer .brand{color:var(--parchment)}
 .rev .who{font-weight:700;font-size:.85rem;color:var(--ink-soft);letter-spacing:.02em;margin-top:auto}
 .rev .who span{font-weight:400}
 @media(max-width:900px){.rev-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+.pdp-desc p{margin:0 0 .85rem;line-height:1.7}
+.pdp-desc p:last-child{margin-bottom:0}
+.pdp-rule{border:none;border-top:1px solid var(--line);width:44px;margin:1.4rem 0}
+.pdp-list{margin:.1rem 0 1.1rem;padding-left:1.15rem;list-style:disc}
+.pdp-list li{margin:0 0 .4rem;line-height:1.6}
+.pdp-subhead{font-weight:700;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:.2rem 0 .55rem}

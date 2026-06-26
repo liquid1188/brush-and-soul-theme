@@ -146,6 +146,49 @@
 </style>
 
 <script>
+  // Tidy imported product descriptions: uniform spacing, real bullet lists, subtle dividers
+  (function(){
+    var desc = document.querySelector('.pdp-desc');
+    if(!desc) return;
+    // 1. drop empty spacer paragraphs (nbsp/whitespace only)
+    [].forEach.call(desc.querySelectorAll('p'), function(p){
+      if(((p.textContent||'').replace(/\u00a0/g,'').trim())==='') p.remove();
+    });
+    // 2. divider-only paragraphs -> subtle rule
+    [].forEach.call(desc.querySelectorAll('p'), function(p){
+      var t=(p.textContent||'').trim();
+      if(t && /^[\u2E3B\u2014\u2013\-_\u2022\u00b7]{2,}$/.test(t.replace(/\s/g,''))){
+        var hr=document.createElement('hr'); hr.className='pdp-rule'; p.replaceWith(hr);
+      }
+    });
+    // 3. consecutive bullet paragraphs -> a single list
+    var ps=[].slice.call(desc.querySelectorAll('p')), i=0;
+    while(i<ps.length){
+      var t=(ps[i].textContent||'').trim();
+      if(/^[\u2022\u00b7]\s+/.test(t)){
+        var ul=document.createElement('ul'); ul.className='pdp-list'; var j=i;
+        while(j<ps.length && /^[\u2022\u00b7]\s+/.test((ps[j].textContent||'').trim())){
+          var li=document.createElement('li');
+          li.textContent=(ps[j].textContent||'').trim().replace(/^[\u2022\u00b7]\s+/,'');
+          ul.appendChild(li); j++;
+        }
+        ps[i].replaceWith(ul);
+        for(var k=i+1;k<j;k++){ if(ps[k]&&ps[k].parentNode) ps[k].remove(); }
+        i=j;
+      } else i++;
+    }
+    // 4. emphasize a short label paragraph that introduces a list (e.g. "Print Details")
+    [].forEach.call(desc.querySelectorAll('ul.pdp-list'), function(ul){
+      var prev=ul.previousElementSibling;
+      if(prev && prev.tagName==='P'){
+        var t=(prev.textContent||'').trim();
+        if(t.length<=28 && t.split(/\s+/).length<=3 && !/[.!?,:;]$/.test(t)) prev.classList.add('pdp-subhead');
+      }
+    });
+  })();
+</script>
+
+<script>
   (function(){
     var main = document.getElementById('pdp-main');
     if(!main) return;
