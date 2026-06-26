@@ -251,6 +251,12 @@ footer .brand{color:var(--parchment)}
 /* shop / catalog */
 .cat-toggle{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:2px}
 .cat-toggle .chip[aria-pressed="true"]{background:var(--pomegranate);border-color:var(--pomegranate)}
+.shop-search{position:relative;display:flex;align-items:center}
+.shop-search-icon{position:absolute;left:14px;width:17px;height:17px;color:var(--ink-soft);pointer-events:none}
+.shop-search input{width:100%;font-family:var(--body);font-size:.95rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:1.6rem;padding:.62rem 1rem .62rem 2.5rem}
+.shop-search input::placeholder{color:var(--ink-soft);opacity:.8}
+.shop-search input:focus{outline:none;border-color:var(--lapis)}
+.linklike{background:none;border:none;color:var(--lapis);font:inherit;cursor:pointer;text-decoration:underline;padding:0}
 .shop-bar{background:var(--parchment-deep);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:32px;display:grid;gap:16px}
 .filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filter-group > .lbl{font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}

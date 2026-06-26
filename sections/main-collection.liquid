@@ -7,76 +7,123 @@
 </section>
 <section style="padding-top:8px">
   <div class="wrap">
-    {% paginate collection.products by 24 %}
-      {%- assign cur_sort = collection.sort_by | default: collection.default_sort_by -%}
-      {%- assign sortq = '' -%}
-      {%- if collection.sort_by != blank -%}{%- assign sortq = '&sort_by=' | append: collection.sort_by -%}{%- endif -%}
-      {%- assign amin = -1 -%}{%- assign amax = -1 -%}
-      {%- for f in collection.filters -%}{%- if f.type == 'price_range' -%}
-        {%- if f.min_value.value -%}{%- assign amin = f.min_value.value | round -%}{%- endif -%}
-        {%- if f.max_value.value -%}{%- assign amax = f.max_value.value | round -%}{%- endif -%}
-      {%- endif -%}{%- endfor -%}
-      <div class="shop-bar">
+    {% paginate collection.products by 250 %}
+      <div class="shop-bar" id="shop-bar">
+        <div class="shop-search">
+          <svg class="shop-search-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M9 3a6 6 0 014.47 10l3.27 3.26-1.42 1.42L12.07 14.4A6 6 0 119 3zm0 2a4 4 0 100 8 4 4 0 000-8z" fill="currentColor"/></svg>
+          <input type="search" id="shop-q" placeholder="Search the shop&hellip;" aria-label="Search products" autocomplete="off">
+        </div>
         <div class="filter-group cat-toggle">
           <span class="lbl">Browse</span>
-          <div class="seg">
-            <a class="chip" aria-pressed="{% if collection.handle == 'all' %}true{% else %}false{% endif %}" href="{{ routes.all_products_collection_url }}">All</a>
-            <a class="chip" aria-pressed="{% if collection.handle == 'originals' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/originals">Originals</a>
-            <a class="chip" aria-pressed="{% if collection.handle == 'prints' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/prints">Prints</a>
-            <a class="chip" aria-pressed="{% if collection.handle == 'products' %}true{% else %}false{% endif %}" href="{{ routes.root_url }}collections/products">Products</a>
+          <div class="seg" data-filter="cat">
+            <button type="button" class="chip" data-val="all" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-val="originals" aria-pressed="false">Originals</button>
+            <button type="button" class="chip" data-val="prints" aria-pressed="false">Prints</button>
+            <button type="button" class="chip" data-val="products" aria-pressed="false">Products</button>
           </div>
         </div>
         <div class="filter-group">
           <span class="lbl">Price</span>
-          <div class="seg">
-            <a class="chip" aria-pressed="{% if amin == -1 and amax == -1 %}true{% else %}false{% endif %}" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">All</a>
-            <a class="chip" aria-pressed="{% if amin == -1 and amax == 25 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.lte=25{{ sortq }}">Under $25</a>
-            <a class="chip" aria-pressed="{% if amin == 25 and amax == 50 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=25&filter.v.price.lte=50{{ sortq }}">$25–$50</a>
-            <a class="chip" aria-pressed="{% if amin == 50 and amax == 100 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=50&filter.v.price.lte=100{{ sortq }}">$50–$100</a>
-            <a class="chip" aria-pressed="{% if amin == 100 and amax == 500 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=100&filter.v.price.lte=500{{ sortq }}">$100–$500</a>
-            <a class="chip" aria-pressed="{% if amin == 500 and amax == -1 %}true{% else %}false{% endif %}" href="{{ collection.url }}?filter.v.price.gte=500{{ sortq }}">Over $500</a>
+          <div class="seg" data-filter="price">
+            <button type="button" class="chip" data-min="0" data-max="0" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-min="0" data-max="2500">Under $25</button>
+            <button type="button" class="chip" data-min="2500" data-max="5000">$25&ndash;$50</button>
+            <button type="button" class="chip" data-min="5000" data-max="10000">$50&ndash;$100</button>
+            <button type="button" class="chip" data-min="10000" data-max="50000">$100&ndash;$500</button>
+            <button type="button" class="chip" data-min="50000" data-max="0">Over $500</button>
           </div>
         </div>
-        {%- for filter in collection.filters -%}
-          {%- unless filter.type == 'price_range' -%}
-            <div class="filter-group">
-              <span class="lbl">{{ filter.label }}</span>
-              <div class="seg">
-                {%- for value in filter.values -%}
-                  <a class="chip" aria-pressed="{{ value.active }}" href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}">{{ value.label }}</a>
-                {%- endfor -%}
-              </div>
-            </div>
-          {%- endunless -%}
-        {%- endfor -%}
         <div class="filter-group">
           <span class="lbl">Sort</span>
-          <select class="shop-sort" onchange="var u=new URL(location.href);u.searchParams.set(&apos;sort_by&apos;,this.value);location.href=u.toString();">
-            {%- for opt in collection.sort_options -%}
-              <option value="{{ opt.value }}"{% if opt.value == cur_sort %} selected{% endif %}>{{ opt.name }}</option>
-            {%- endfor -%}
+          <select class="shop-sort" id="shop-sort">
+            <option value="featured">Featured</option>
+            <option value="az">Alphabetically, A&ndash;Z</option>
+            <option value="za">Alphabetically, Z&ndash;A</option>
+            <option value="plow">Price, low to high</option>
+            <option value="phigh">Price, high to low</option>
           </select>
         </div>
       </div>
-      <div class="shop-grid">
+
+      <div class="shop-grid" id="shop-grid">
         {% for product in collection.products %}
-          {% render 'product-card', product: product %}
+          {%- assign cat = 'prints' -%}
+          {%- if product.type == 'Original' -%}{%- assign cat = 'originals' -%}{%- elsif product.type == 'Phone Case' -%}{%- assign cat = 'products' -%}{%- endif -%}
+          <div class="shop-cell" data-cat="{{ cat }}" data-price="{{ product.price }}" data-title="{{ product.title | downcase | strip_html | escape }}" data-i="{{ forloop.index0 }}">
+            {% render 'product-card', product: product %}
+          </div>
         {% else %}
-          {% assign active_filters = 0 %}
-          {% for filter in collection.filters %}
-            {% if filter.active_values.size > 0 %}{% assign active_filters = active_filters | plus: 1 %}{% endif %}
-          {% endfor %}
-          {% if active_filters > 0 %}
-            <p class="shop-empty">No pieces match these filters. <a href="{{ collection.url }}">Clear filters</a> to see everything.</p>
-          {% else %}
-            <p class="shop-empty">No pieces here yet — check back soon.</p>
-          {% endif %}
+          <p class="shop-empty">No pieces here yet &mdash; check back soon.</p>
         {% endfor %}
       </div>
-      {% if paginate.pages > 1 %}
-        <div style="text-align:center;margin-top:32px">{{ paginate | default_pagination }}</div>
-      {% endif %}
+      <p class="shop-empty" id="shop-noresults" hidden>No pieces match. <button type="button" class="linklike" id="shop-clear">Clear filters</button></p>
     {% endpaginate %}
   </div>
 </section>
+
+<script>
+  (function(){
+    var grid = document.getElementById('shop-grid');
+    if(!grid) return;
+    var cells = Array.prototype.slice.call(grid.querySelectorAll('.shop-cell'));
+    if(!cells.length) return;
+    var q = document.getElementById('shop-q');
+    var sortSel = document.getElementById('shop-sort');
+    var noRes = document.getElementById('shop-noresults');
+    var state = { cat:'all', min:0, max:0, q:'', sort:'featured' };
+
+    function apply(){
+      var qq = state.q.trim().toLowerCase();
+      var shown = 0;
+      cells.forEach(function(c){
+        var okCat = state.cat === 'all' || c.getAttribute('data-cat') === state.cat;
+        var price = parseInt(c.getAttribute('data-price'), 10) || 0;
+        var okMin = price >= state.min;
+        var okMax = state.max === 0 || price < state.max;
+        var okQ = !qq || (c.getAttribute('data-title') || '').indexOf(qq) !== -1;
+        var show = okCat && okMin && okMax && okQ;
+        c.style.display = show ? '' : 'none';
+        if(show) shown++;
+      });
+      if(noRes) noRes.hidden = (shown !== 0);
+
+      var ordered = cells.slice();
+      ordered.sort(function(a,b){
+        if(state.sort === 'az') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+        if(state.sort === 'za') return b.getAttribute('data-title').localeCompare(a.getAttribute('data-title'));
+        if(state.sort === 'plow' || state.sort === 'phigh'){
+          var pa = parseInt(a.getAttribute('data-price'),10)||0, pb = parseInt(b.getAttribute('data-price'),10)||0;
+          return state.sort === 'plow' ? pa - pb : pb - pa;
+        }
+        return (+a.getAttribute('data-i')) - (+b.getAttribute('data-i'));
+      });
+      ordered.forEach(function(c){ grid.appendChild(c); });
+    }
+
+    document.querySelectorAll('.seg[data-filter]').forEach(function(seg){
+      seg.addEventListener('click', function(e){
+        var btn = e.target.closest('.chip');
+        if(!btn) return;
+        seg.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        btn.setAttribute('aria-pressed','true');
+        if(seg.getAttribute('data-filter') === 'cat'){ state.cat = btn.getAttribute('data-val'); }
+        else { state.min = parseInt(btn.getAttribute('data-min'),10)||0; state.max = parseInt(btn.getAttribute('data-max'),10)||0; }
+        apply();
+      });
+    });
+    if(q) q.addEventListener('input', function(){ state.q = this.value; apply(); });
+    if(sortSel) sortSel.addEventListener('change', function(){ state.sort = this.value; apply(); });
+
+    var clr = document.getElementById('shop-clear');
+    if(clr) clr.addEventListener('click', function(){
+      state = { cat:'all', min:0, max:0, q:'', sort:'featured' };
+      if(q) q.value = '';
+      if(sortSel) sortSel.value = 'featured';
+      document.querySelectorAll('.seg[data-filter]').forEach(function(seg){
+        seg.querySelectorAll('.chip').forEach(function(x,i){ x.setAttribute('aria-pressed', i===0 ? 'true':'false'); });
+      });
+      apply();
+    });
+  })();
+</script>
 {% schema %}{ "name": "Collection", "settings": [] }{% endschema %}
