@@ -63,7 +63,8 @@
       {% render 'promo-badge', product: product, variant: 'pdp' %}
 
       {% if product.description != blank %}
-        <div class="prose pdp-desc">{{ product.description }}</div>
+        {%- assign desc = product.description | replace: '<p>&nbsp;</p>', '' | replace: '<p> </p>', '' | replace: '<p></p>', '' | replace: '<p> </p>', '' -%}
+        <div class="prose pdp-desc">{{ desc }}</div>
       {% endif %}
 
       {% form 'product', product %}
@@ -152,26 +153,27 @@
     // Map each variant to its model-specific image (id + urls)
     var VIMG = { {% for v in product.variants %}{% if v.featured_image %}"{{ v.id }}":{id:"{{ v.featured_image.id }}",f:"{{ v.featured_image | image_url: width: 1400 }}",z:"{{ v.featured_image | image_url: width: 2400 }}"},{% endif %}{% endfor %} };
     // Set of image ids that are some model's featured image (i.e. model-specific shots)
-    var MODELIDS = {}; Object.keys(VIMG).forEach(function(k){ MODELIDS[VIMG[k].id]=1; });
     var pvSel = document.getElementById('pdp-variant');
+    var thumbsWrap = document.querySelector('.pdp-thumbs');
     function applyVariant(vid){
       vid = String(vid);
       var info = VIMG[vid];
       if(info){ main.src = info.f; main.setAttribute('data-zoom', info.z); }
       var wantId = info ? String(info.id) : null;
       var thumbs = document.querySelectorAll('.pdp-thumb');
-      var firstVisible=null, exactThumb=null;
+      var visible = 0, exactThumb = null;
       thumbs.forEach(function(t){
         var imgId = (t.getAttribute('data-img-id')||'').trim();
-        var isModelImg = !!MODELIDS[imgId];                    // belongs to a specific model
-        var show = !isModelImg || (wantId && imgId===wantId);  // generic shots always; model shots only for this model
+        // If this variant has its own linked image (phone cases), show ONLY that image.
+        // If it has none (art prints share one image set), show everything.
+        var show = wantId ? (imgId === wantId) : true;
         t.style.display = show ? '' : 'none';
         t.classList.remove('is-active');
-        if(show && !firstVisible) firstVisible=t;
-        if(wantId && imgId===wantId && !exactThumb) exactThumb=t;
+        if(show){ visible++; if(imgId===wantId && !exactThumb) exactThumb = t; }
       });
-      var act = exactThumb || firstVisible;
-      if(act) act.classList.add('is-active');
+      if(exactThumb) exactThumb.classList.add('is-active');
+      // hide the thumbnail strip when there's nothing to switch between
+      if(thumbsWrap){ thumbsWrap.style.display = visible > 1 ? '' : 'none'; }
     }
     if(pvSel){ pvSel.addEventListener('change', function(){ applyVariant(this.value); }); applyVariant(pvSel.value); }
     document.querySelectorAll('.pdp-thumb').forEach(function(t){
