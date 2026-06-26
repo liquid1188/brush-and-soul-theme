@@ -257,6 +257,10 @@ footer .brand{color:var(--parchment)}
 .shop-search input::placeholder{color:var(--ink-soft);opacity:.8}
 .shop-search input:focus{outline:none;border-color:var(--lapis)}
 .linklike{background:none;border:none;color:var(--lapis);font:inherit;cursor:pointer;text-decoration:underline;padding:0}
+.collection-intro{max-width:620px;margin:14px auto 0;line-height:1.7;color:var(--ink-soft)}
+.back-to-shop{margin-top:18px}
+.back-to-shop a{font-size:.9rem;font-weight:600;color:var(--lapis);text-decoration:none;letter-spacing:.01em}
+.back-to-shop a:hover{text-decoration:underline}
 .shop-bar{background:var(--parchment-deep);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:32px;display:grid;gap:16px}
 .filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filter-group > .lbl{font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}

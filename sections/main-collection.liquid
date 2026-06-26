@@ -2,18 +2,19 @@
   <div class="wrap">
     <span class="eyebrow">bring a piece home</span>
     <h1>{% if collection.handle == 'all' %}Shop{% else %}{{ collection.title }}{% endif %}</h1>
-    {% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}
+    {% if collection.description != blank %}<p class="collection-intro">{{ collection.description }}</p>{% endif %}
+    {% unless collection.handle == 'all' %}<p class="back-to-shop"><a href="{{ routes.all_products_collection_url }}">&larr; Back to Shop</a></p>{% endunless %}
   </div>
 </section>
 <section style="padding-top:8px">
   <div class="wrap">
     {% paginate collection.products by 250 %}
+      {% if collection.handle == 'all' %}
       <div class="shop-bar" id="shop-bar">
         <div class="shop-search">
           <svg class="shop-search-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M9 3a6 6 0 014.47 10l3.27 3.26-1.42 1.42L12.07 14.4A6 6 0 119 3zm0 2a4 4 0 100 8 4 4 0 000-8z" fill="currentColor"/></svg>
           <input type="search" id="shop-q" placeholder="Search the shop&hellip;" aria-label="Search products" autocomplete="off">
         </div>
-        {% if collection.handle == 'all' %}
         <div class="filter-group cat-toggle">
           <span class="lbl">Browse</span>
           <div class="seg" data-filter="cat">
@@ -23,7 +24,6 @@
             <button type="button" class="chip" data-val="products" aria-pressed="false">Products</button>
           </div>
         </div>
-        {% endif %}
         <div class="filter-group">
           <span class="lbl">Price</span>
           <div class="seg" data-filter="price">
@@ -46,6 +46,7 @@
           </select>
         </div>
       </div>
+      {% endif %}
 
       <div class="shop-grid" id="shop-grid">
         {% for product in collection.products %}
