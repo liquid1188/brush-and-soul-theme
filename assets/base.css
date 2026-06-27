@@ -289,6 +289,8 @@ footer .brand{color:var(--parchment)}
 /* real imagery */
 .brand{display:flex;align-items:center;gap:11px}
 .brand-mark{height:40px;width:auto;border-radius:8px;display:block}
+.brand-logo{height:50px;width:auto;display:block}
+@media(max-width:640px){.brand-logo{height:42px}}
 .brand-txt{display:flex;flex-direction:column;line-height:1.05}
 .arch img{display:block}
 .arch .art-img{width:88%;height:100%;max-height:70%;object-fit:contain;object-position:bottom;border-radius:2px;border:none;align-self:flex-end;margin-bottom:6px}

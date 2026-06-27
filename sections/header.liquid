@@ -2,11 +2,10 @@
   <div class="wrap nav">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
       {% if section.settings.logo %}
-        <img src="{{ section.settings.logo | image_url: width: 120 }}" alt="{{ shop.name | escape }}" class="brand-mark" width="40" height="40">
+        <img src="{{ section.settings.logo | image_url: width: 700 }}" alt="{{ shop.name | escape }}" class="brand-logo">
       {% else %}
-        <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="brand-mark" width="40" height="40">
+        <img src="{{ 'logo-header.png' | asset_url }}" alt="{{ shop.name | escape }}" class="brand-logo">
       {% endif %}
-      <span class="brand-txt">Brush &amp; Soul<small>studio · handmade art</small></span>
     </a>
     <nav aria-label="Primary">
       <ul class="menu">
