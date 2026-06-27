@@ -8,6 +8,7 @@
       {% else %}
       <div class="news form" style="display:flex;gap:.7rem;max-width:520px;margin:0 auto;flex-wrap:wrap;justify-content:center">
         <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="hidden" name="contact[accepts_marketing]" value="true">
         <input type="text" name="contact[first_name]" placeholder="Your name" aria-label="Your name">
         <input type="email" name="contact[email]" placeholder="Your email" aria-label="Email" required>
         <button type="submit" class="btn btn-primary">{{ section.settings.button | default: 'Join' }}</button>
