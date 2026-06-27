@@ -4,7 +4,7 @@
       {% if section.settings.logo %}
         <img src="{{ section.settings.logo | image_url: width: 120 }}" alt="{{ shop.name | escape }}" class="brand-mark" width="40" height="40">
       {% else %}
-        <img src="{{ 'logo.jpg' | asset_url }}" alt="{{ shop.name | escape }}" class="brand-mark" width="40" height="40">
+        <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name | escape }}" class="brand-mark" width="40" height="40">
       {% endif %}
       <span class="brand-txt">Brush &amp; Soul<small>studio · handmade art</small></span>
     </a>
@@ -28,7 +28,7 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "image_picker", "id": "logo", "label": "Logo (defaults to Citrus Leaves)" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (defaults to Brush \u0026 Soul mark)" },
     { "type": "link_list", "id": "menu", "label": "Navigation menu" }
   ]
 }
