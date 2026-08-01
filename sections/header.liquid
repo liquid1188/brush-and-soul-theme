@@ -11,22 +11,130 @@
         <small>handmade art</small>
       </span>
     </a>
+
     <nav aria-label="Primary">
       <ul class="menu">
         {% for link in section.settings.menu.links %}
-          <li><a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
+          {% if link.links.size > 0 %}
+            <li class="has-sub">
+              <a href="{{ link.url }}"{% if link.active or link.child_active %} class="active"{% endif %} aria-expanded="false">{{ link.title }}</a>
+              <ul class="submenu">
+                {% for child in link.links %}
+                  <li><a href="{{ child.url }}"{% if child.active %} class="active"{% endif %}>{{ child.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li><a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
+          {% endif %}
         {% else %}
-          <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+          {%- comment -%}
+            Fallback when no menu is assigned in the theme editor.
+            Mirrors the live nav, with every page reachable.
+          {%- endcomment -%}
+          <li class="has-sub">
+            <a href="{{ routes.all_products_collection_url }}" aria-expanded="false">Shop</a>
+            <ul class="submenu">
+              <li><a href="{{ routes.all_products_collection_url }}">All Work</a></li>
+              <li><a href="{{ routes.root_url }}collections/originals">Originals</a></li>
+              <li><a href="{{ routes.root_url }}collections/prints">Prints</a></li>
+              <li><a href="{{ routes.root_url }}pages/commissions">Commissions</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="{{ routes.root_url }}pages/about" aria-expanded="false">Studio</a>
+            <ul class="submenu">
+              <li><a href="{{ routes.root_url }}pages/about">About</a></li>
+              <li><a href="{{ routes.root_url }}pages/events">Events</a></li>
+              <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
+            </ul>
+          </li>
           <li><a href="{{ routes.root_url }}pages/commissions">Commissions</a></li>
-          <li><a href="{{ routes.root_url }}pages/about">About</a></li>
-          <li><a href="{{ routes.root_url }}pages/events">Events</a></li>
           <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
         {% endfor %}
       </ul>
     </nav>
-    <a href="{{ routes.cart_url }}" class="icon-cart" aria-label="Cart">&#8853; {{ cart.item_count }}</a>
+
+    <div class="nav-right">
+      <a href="{{ routes.cart_url }}" class="icon-cart" aria-label="Cart">&#8853; {{ cart.item_count }}</a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+(function () {
+  var nav = document.querySelector('header .nav');
+  if (!nav) return;
+  var menu = nav.querySelector('.menu');
+  var burger = nav.querySelector('.nav-burger');
+  if (!menu || !burger) return;
+
+  menu.id = menu.id || 'site-menu';
+  var MOBILE = 900;
+  var isMobile = function () { return window.innerWidth <= MOBILE; };
+
+  function closeAllSubs() {
+    menu.querySelectorAll('.has-sub.open').forEach(function (li) {
+      li.classList.remove('open');
+      var t = li.querySelector(':scope > a');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    closeAllSubs();
+  }
+
+  burger.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (!open) closeAllSubs();
+  });
+
+  // Submenu toggles. On mobile these open an accordion instead of navigating.
+  menu.querySelectorAll('.has-sub > a').forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      if (!isMobile()) return;              // desktop keeps hover + normal link
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      var li = toggle.parentElement;
+      var wasOpen = li.classList.contains('open');
+      closeAllSubs();
+      if (!wasOpen) {
+        li.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Any real link closes the whole menu; submenu toggles are excluded above.
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (a.matches('.has-sub > a') && isMobile()) return;
+      closeMenu();
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
+
+  window.addEventListener('resize', function () {
+    if (!isMobile()) closeMenu();
+  });
+})();
+</script>
+
 {% schema %}
 {
   "name": "Header",
