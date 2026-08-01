@@ -68,6 +68,7 @@
 (function () {
   var nav = document.querySelector('header .nav');
   if (!nav) return;
+  var hdr = nav.closest('header');
   var menu = nav.querySelector('.menu');
   var burger = nav.querySelector('.nav-burger');
   if (!menu || !burger) return;
@@ -88,6 +89,7 @@
     menu.classList.remove('open');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
+    if (hdr) hdr.classList.remove('menu-open');
     document.body.style.overflow = '';
     closeAllSubs();
   }
@@ -96,6 +98,9 @@
     var open = menu.classList.toggle('open');
     burger.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // Releases the header's backdrop-filter, which would otherwise act as a
+    // containing block and trap the fixed-position menu inside the bar.
+    if (hdr) hdr.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
     if (!open) closeAllSubs();
   });
@@ -114,6 +119,7 @@
         li.classList.add('open');
         toggle.setAttribute('aria-expanded', 'true');
       }
+      toggle.blur();
     });
   });
 
