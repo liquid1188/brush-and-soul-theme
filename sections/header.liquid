@@ -13,7 +13,14 @@
     </a>
 
     <nav aria-label="Primary">
-      <ul class="menu">
+      <ul class="menu" id="site-menu">
+        <li class="menu-brand" aria-hidden="true">
+          {% if section.settings.logo %}
+            <img src="{{ section.settings.logo | image_url: width: 240 }}" alt="">
+          {% else %}
+            <img src="{{ 'logo-graphic.png' | asset_url }}" alt="">
+          {% endif %}
+        </li>
         {% for link in section.settings.menu.links %}
           {% if link.links.size > 0 %}
             <li class="has-sub">
@@ -32,13 +39,13 @@
             Fallback when no menu is assigned in the theme editor.
             Mirrors the live nav, with every page reachable.
           {%- endcomment -%}
+          <li><a href="{{ routes.root_url }}">Home</a></li>
           <li class="has-sub">
             <a href="{{ routes.all_products_collection_url }}" aria-expanded="false">Shop</a>
             <ul class="submenu">
               <li><a href="{{ routes.all_products_collection_url }}">All Work</a></li>
               <li><a href="{{ routes.root_url }}collections/originals">Originals</a></li>
               <li><a href="{{ routes.root_url }}collections/prints">Prints</a></li>
-              <li><a href="{{ routes.root_url }}pages/commissions">Commissions</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -46,7 +53,6 @@
             <ul class="submenu">
               <li><a href="{{ routes.root_url }}pages/about">About</a></li>
               <li><a href="{{ routes.root_url }}pages/events">Events</a></li>
-              <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
             </ul>
           </li>
           <li><a href="{{ routes.root_url }}pages/commissions">Commissions</a></li>

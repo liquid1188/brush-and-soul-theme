@@ -350,6 +350,7 @@ footer .brand{color:var(--parchment)}
    so if they are left unscoped they win on mobile too and translateX(-50%)
    drags the open submenu off the left edge of the screen. */
 @media(min-width:901px){
+  .menu-brand{display:none}
   .menu .has-sub{position:relative}
   .menu .has-sub > a::before{content:"";display:inline-block;width:0;height:0;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:4px solid currentColor;opacity:.5;margin-right:.42rem;vertical-align:middle}
   .menu .submenu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);min-width:184px;margin:0;padding:.5rem 0;list-style:none;background:var(--parchment);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px -18px rgba(42,27,46,.45);opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;z-index:60}
@@ -372,6 +373,10 @@ footer .brand{color:var(--parchment)}
   .brand-txt{min-width:0}
   .brand-name{font-size:1.02rem;white-space:normal}
   .nav-burger{display:flex}
+  .nav-right{position:relative;z-index:90}
+
+  .menu-brand{display:flex;justify-content:center;border-bottom:0!important;padding:0 0 1.6rem}
+  .menu-brand img{height:56px;width:auto;display:block;opacity:.95}
 
   .menu{
     display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:80;
@@ -384,9 +389,13 @@ footer .brand{color:var(--parchment)}
   .menu > li > a{display:block;position:relative;padding:1rem 0;font-size:1.02rem}
   .menu a::after{display:none}
 
+  /* The shared .menu a::after underline sets background:pomegranate and
+     left:0; without resetting those here the caret renders as a red dot
+     over the first letter of the link. */
   .menu .has-sub > a::after{
-    content:"";display:block;position:absolute;right:2px;top:50%;
-    width:0;height:0;margin-top:-2px;
+    content:"";display:block;position:absolute;
+    left:auto;bottom:auto;right:2px;top:50%;
+    width:0;height:0;margin-top:-2px;background:none;
     border-left:4.5px solid transparent;border-right:4.5px solid transparent;
     border-top:5px solid currentColor;opacity:.55;
     transition:transform .2s ease;
