@@ -1,0 +1,180 @@
+{% doc %}
+  @prompt
+    Create a concise artist-story section for the homepage of Brush & Soul Studio. The section should feel warm, intimate, and artisanal. Use the following content from the About page — do not invent any new claims:
+    
+    Heading: "The Artist Behind the Work"
+    
+    Body text:
+    - Caroline is an artist, mother, and wanderer living in Iran, where she draws inspiration from rosewater-scented air, ancient walls, and silken light.
+    - Her work is shaped by rich color (bold yet tender), soft curves (the language of the feminine), nature (her forever teacher), and embodiment — the art of creating from within a feeling body.
+    - Motherhood has deepened her practice; her son is her companion in painting, wandering markets, and listening to the world.
+    - Each piece she creates is a fragment of this life — an invitation to live more beautifully, slowly, and fully.
+    
+    Include a text link at the bottom that reads "Read Caroline's full story →" linking to /pages/about.
+    
+    The section should use a soft, elegant background (light cream or blush tone), readable serif or elegant sans-serif typography, and be fully responsive and mobile-friendly.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-artist-story-{{ ai_gen_id }} {
+    display: block;
+    box-sizing: border-box;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 76px) clamp(20px, 5vw, 64px);
+    background: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__inner {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__heading {
+    margin: 0 0 24px;
+    color: {{ block.settings.text_color }};
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.75;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__body p {
+    margin: 0 0 16px;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__link {
+    display: inline-block;
+    margin-top: 28px;
+    color: {{ block.settings.link_color }};
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .ai-artist-story-{{ ai_gen_id }}__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-artist-story-{{ ai_gen_id }} {
+      width: 100%;
+      padding: 36px 22px;
+    }
+
+    .ai-artist-story-{{ ai_gen_id }}__heading {
+      margin-bottom: 18px;
+    }
+
+    .ai-artist-story-{{ ai_gen_id }}__body p {
+      margin-bottom: 13px;
+    }
+  }
+{% endstyle %}
+
+<section class="ai-artist-story-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-artist-story-{{ ai_gen_id }}__inner">
+    <h2 class="ai-artist-story-{{ ai_gen_id }}__heading">{{ block.settings.heading | escape }}</h2>
+    <div class="ai-artist-story-{{ ai_gen_id }}__body">
+      <p>Caroline is an artist, mother, and wanderer living in Iran, where she draws inspiration from rosewater-scented air, ancient walls, and silken light.</p>
+      <p>Her work is shaped by rich color (bold yet tender), soft curves (the language of the feminine), nature (her forever teacher), and embodiment — the art of creating from within a feeling body.</p>
+      <p>Motherhood has deepened her practice; her son is her companion in painting, wandering markets, and listening to the world.</p>
+      <p>Each piece she creates is a fragment of this life — an invitation to live more beautifully, slowly, and fully.</p>
+    </div>
+    <a class="ai-artist-story-{{ ai_gen_id }}__link" href="{{ block.settings.story_link }}">{{ block.settings.link_label | escape }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Artist story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Artist Behind the Work"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link text",
+      "default": "Read Caroline's full story →"
+    },
+    {
+      "type": "url",
+      "id": "story_link",
+      "label": "Story link"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#F6EFE8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#342820"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#553A30"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Artist story"
+    }
+  ],
+  "tag": null,
+  "class": "artist-story-block"
+}
+{% endschema %}
