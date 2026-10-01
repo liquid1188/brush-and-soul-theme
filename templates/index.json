@@ -1,13 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "brandbanner": {
-      "type": "brand-banner"
+      "type": "brand-banner",
+      "settings": {
+        "rounded": false,
+        "show_cta": false,
+        "cta_label": "Explore the collection",
+        "cta_url": ""
+      }
     },
     "hero": {
-      "type": "hero"
+      "type": "hero",
+      "settings": {
+        "eyebrow": "color gathered from a life of wandering",
+        "heading": "The poetry of life, painted in color.",
+        "subtext": "Pieces born from poetry, rooted in nature — made to fill your space with the richness of a life lived as art.",
+        "button1_label": "Explore the collection",
+        "button1_url": "",
+        "button2_label": "Commission a piece",
+        "button2_url": ""
+      }
     },
     "vision": {
-      "type": "vision"
+      "type": "vision",
+      "settings": {
+        "eyebrow": "our vision",
+        "text": "Dive into a realm where colors carry stories, and every brushstroke holds a piece of the soul. Here, nature's curves and flowing lines weave into works that are meant to be lived with — art that whispers beauty into your everyday, that invites you to pause, breathe, and see the world anew."
+      }
     },
     "funnel": {
       "type": "category-funnel",
@@ -17,7 +45,7 @@
           "settings": {
             "title": "Originals",
             "subtitle": "One-of-a-kind paintings. The gallery.",
-            "color": "#D85A30",
+            "color": "#d85a30",
             "link": "shopify://collections/originals"
           }
         },
@@ -26,7 +54,7 @@
           "settings": {
             "title": "Prints",
             "subtitle": "Fine-art reproductions on archival paper.",
-            "color": "#1D9E75",
+            "color": "#1d9e75",
             "link": "shopify://collections/prints"
           }
         },
@@ -35,7 +63,7 @@
           "settings": {
             "title": "Products",
             "subtitle": "Her art on cases, mugs, apparel and more.",
-            "color": "#7F77DD",
+            "color": "#7f77dd",
             "link": "shopify://collections/products"
           }
         }
@@ -44,11 +72,17 @@
         "b1",
         "b2",
         "b3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "where would you like to begin?",
+        "heading": "Three ways in"
+      }
     },
     "featured": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "fresh from the studio",
+        "heading": "New & featured",
         "collection": "originals",
         "count": 4
       }
@@ -88,10 +122,42 @@
         "r1",
         "r2",
         "r3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "what buyers say",
+        "heading": "Kind words"
+      }
     },
     "newsletter": {
-      "type": "newsletter"
+      "type": "newsletter",
+      "settings": {
+        "heading": "Live a little more beautifully",
+        "subtext": "New work, studio notes, and first looks at collections.",
+        "button": "Join"
+      }
+    },
+    "1790871449cd433299": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_b23b971_nhagUC": {
+          "type": "ai_gen_block_b23b971",
+          "settings": {
+            "heading": "The Artist Behind the Work",
+            "link_label": "Read Caroline's full story →",
+            "story_link": "",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "background_color": "#F6EFE8",
+            "text_color": "#342820",
+            "link_color": "#553A30"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_b23b971_nhagUC"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -101,6 +167,7 @@
     "funnel",
     "featured",
     "reviews",
-    "newsletter"
+    "newsletter",
+    "1790871449cd433299"
   ]
 }
