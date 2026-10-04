@@ -83,7 +83,7 @@
       "settings": {
         "eyebrow": "fresh from the studio",
         "heading": "New & featured",
-        "collection": "originals",
+        "collection": "prints",
         "count": 4
       }
     },
@@ -147,9 +147,9 @@
             "story_link": "",
             "desktop_width_percent": 100,
             "text_alignment": "left",
-            "background_color": "#F6EFE8",
+            "background_color": "#f6efe8",
             "text_color": "#342820",
-            "link_color": "#553A30"
+            "link_color": "#553a30"
           },
           "blocks": {}
         }
