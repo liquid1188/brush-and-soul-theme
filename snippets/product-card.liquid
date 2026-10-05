@@ -9,8 +9,13 @@
       <div class="ph"><span>artwork</span></div>
     {% endif %}
   </div>
+  {%- assign title_parts = product.title | split: ' — ' -%}
+  {%- assign card_name = title_parts.first -%}
+  {%- assign card_sub = '' -%}
+  {%- if title_parts.size > 1 -%}{%- assign card_sub = product.title | remove_first: card_name | remove_first: ' — ' -%}{%- endif -%}
   {% if product.type != blank %}<span class="tag">{{ product.type }}</span>{% endif %}
-  <h4>{{ product.title }}</h4>
+  <h4>{{ card_name }}</h4>
+  {% if card_sub != blank %}<span class="card-sub">{{ card_sub }}</span>{% endif %}
   <div class="price">{{ product.price | money }}</div>
   {% render 'promo-badge', product: product, variant: 'card' %}
 </a>

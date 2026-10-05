@@ -16,13 +16,8 @@
 {%- comment -%} ---------- title ---------- {%- endcomment -%}
 {%- case template.name -%}
   {%- when 'index' -%}
-    {%- assign seo_title = shop_name -%}
-    {%- assign shop_desc = shop.description | default: '' -%}
-    {%- if shop_desc != blank -%}
-      {%- assign seo_title = shop_name | append: ' — ' | append: shop_desc -%}
-    {%- else -%}
-      {%- assign seo_title = shop_name | append: ' — Original Paintings, Prints & Commissions' -%}
-    {%- endif -%}
+    {%- comment -%} Kept short (about 60 characters) so Google shows it whole; the long store description stays in the meta description. {%- endcomment -%}
+    {%- assign seo_title = shop_name | append: ' — Original Paintings, Prints & Commissions' -%}
   {%- when '404' -%}
     {%- assign seo_title = 'Page not found — ' | append: shop_name -%}
   {%- else -%}

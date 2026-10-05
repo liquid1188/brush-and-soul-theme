@@ -9,6 +9,12 @@
       <a href="{{ section.settings.cta_url }}" class="btn btn-saffron">{{ section.settings.cta_label }}</a>
     </div>
   {% endif %}
+  {% if section.settings.show_mobile_cta %}
+    <div class="brand-banner__mobile-cta">
+      <a href="{{ section.settings.mobile_cta1_url | default: routes.all_products_collection_url }}" class="btn btn-primary">{{ section.settings.mobile_cta1_label }}</a>
+      <a href="{{ section.settings.mobile_cta2_url | default: '/pages/commissions' }}" class="btn btn-ghost">{{ section.settings.mobile_cta2_label }}</a>
+    </div>
+  {% endif %}
 </section>
 {% schema %}
 {
@@ -18,7 +24,13 @@
     { "type": "checkbox", "id": "rounded", "label": "Rounded corners", "default": false },
     { "type": "checkbox", "id": "show_cta", "label": "Show button over banner", "default": false },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Explore the collection" },
-    { "type": "url", "id": "cta_url", "label": "Button link" }
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    { "type": "header", "content": "Phone buttons" },
+    { "type": "checkbox", "id": "show_mobile_cta", "label": "Show buttons under the banner on phones", "info": "Phones only, so shoppers see a button on the first screen. Hidden on desktop.", "default": true },
+    { "type": "text", "id": "mobile_cta1_label", "label": "First button label", "default": "Shop the collection" },
+    { "type": "url", "id": "mobile_cta1_url", "label": "First button link" },
+    { "type": "text", "id": "mobile_cta2_label", "label": "Second button label", "default": "Commissions" },
+    { "type": "url", "id": "mobile_cta2_url", "label": "Second button link" }
   ],
   "presets": [{ "name": "Brand banner" }]
 }

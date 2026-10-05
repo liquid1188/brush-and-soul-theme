@@ -424,3 +424,18 @@ footer .brand{color:var(--parchment)}
 @media(prefers-reduced-motion:reduce){
   .nav-burger span,.menu .has-sub > a::after{transition:none}
 }
+
+/* Cart bag icon (Oct 2026) */
+.icon-cart{gap:.3rem}
+.icon-cart .icon-bag{display:block;width:22px;height:22px}
+.icon-cart .cart-count{font-family:var(--body);font-size:.85rem;font-weight:600}
+/* Product card: painting name as title, descriptor as small label (Oct 2026) */
+.card h4{overflow-wrap:normal;word-break:normal;hyphens:none}
+.card .card-sub{display:block;font-size:.8rem;color:var(--ink);opacity:.68;margin-top:.15rem;line-height:1.35}
+
+/* Phone-only buttons under the brand banner (Oct 2026) */
+.brand-banner__mobile-cta{display:none}
+@media (max-width:749px){
+  .brand-banner__mobile-cta{display:flex;justify-content:center;gap:.6rem;padding:16px 20px 4px;line-height:normal;flex-wrap:wrap}
+  .brand-banner__mobile-cta .btn{padding:.7rem 1.25rem;font-size:.86rem}
+}
