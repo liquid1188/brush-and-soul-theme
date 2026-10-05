@@ -15,7 +15,12 @@
         "rounded": false,
         "show_cta": false,
         "cta_label": "Explore the collection",
-        "cta_url": ""
+        "cta_url": "",
+        "show_mobile_cta": true,
+        "mobile_cta1_label": "Shop the collection",
+        "mobile_cta1_url": "",
+        "mobile_cta2_label": "Commissions",
+        "mobile_cta2_url": ""
       }
     },
     "hero": {
@@ -112,9 +117,9 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "quote": "Lovely quality poster, really happy.",
-            "author": "Gillian",
-            "detail": "via Etsy"
+            "quote": "Caroline carefully brought my story, my music, my journey to life with her beautiful, vivid color and symbolism. Poetry on canvas! I absolutely love the piece she created for me and discover a new hidden gem each time I gaze at it. It was a pleasure working with her! I highly recommend her for your commissioned piece!",
+            "author": "Laverna",
+            "detail": "Personal commission"
           }
         }
       },
