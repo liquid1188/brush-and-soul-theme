@@ -99,18 +99,27 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "quote": "I love this! LikouDesigns is so creative and beautiful. I had a hard time choosing just one so I purchased three!",
-            "author": "Nicole",
-            "detail": "via Etsy"
+            "quote": "I commissioned a large painting by Caroline at a time of major transformation in my life. I shared that with her as well as the general feelings I wanted the painting to convey. Caroline has a way of intuiting imagery that captures symbols and colors that are deeply personal, ones I hadn’t mentioned in our conversations but were perfectly captured. Friends who come over often comment on how striking the painting is. It really is a prized possession. I loved it so much, I commissioned another piece as a gift to a friend recently!",
+            "author": "Hanna",
+            "detail": "via commission"
           }
         },
         "r2": {
           "type": "review",
           "settings": {
             "stars": 5,
-            "quote": "Beautiful print with vibrant colors!",
-            "author": "Marjan",
-            "detail": "via Etsy"
+            "quote": "My friend had Caroline create the most stunning art piece for my birthday! The color, texture and overall feel of the art piece give me so much joy to look at!  It was done with such intention and beauty while telling such a beautiful story! It’s one of my favorite things I own and I get to look at it every time I rock my baby to sleep. Caroline truly has such a gift and knows how to put feeling and emotion behind her designs! Highly recommend her stunning work!",
+            "author": "Annie",
+            "detail": "Via a friend"
+          }
+        },
+        "review_ycwczA": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "quote": "I commissioned Caroline to paint a piece for me while she was still in Iran. I wasn’t in a rush—because I travel a lot, we agreed that the painting would be delivered at the beginning of the year. Little did we both know that war would break out in Iran.  When everything changed, Caroline had to flee the country and left the painting behind. As it turned out, the story of the artwork didn’t end when the canvas was finished—it became something bigger. My painting came with a journey of its own: a beautiful piece traveling from one country to another, until it eventually made its way to the United States.  When I finally received it, it was more mesmerizing than I could have imagined. It has become a true centerpiece in my home—the kind of piece people can’t help but notice. Everyone who visits asks about it, and I always find myself smiling because it really does feel alive.  There’s so much soul and beauty in the painting. I can honestly say I wouldn’t exchange it for anything. It’s become my favorite piece, and it means more to me than I can fully explain.  I can’t wait to commission Caroline again and to have another painting made—because after what this one has survived, I know the next one will carry its own special magic too.",
+            "author": "Aleksa",
+            "detail": "Via commission"
           }
         },
         "r3": {
@@ -126,6 +135,7 @@
       "block_order": [
         "r1",
         "r2",
+        "review_ycwczA",
         "r3"
       ],
       "settings": {
